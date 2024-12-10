@@ -969,15 +969,15 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-oio06PP1ZRsAxrDfAt2DQeJAy2ap39Y6mVbLzcQFNyQ=",
+      "hash": "sha256-ak9YiAzBXdtY53kKxIXs2i2ajzH6yNpvpMMVkNXr4Bs=",
       "url": "_framework\/GestionGastosWeb.wasm"
     },
     {
-      "hash": "sha256-VJo5ruz625bfPJQ9vCGfIcpelLN0UXCBoyh5xnr3BX8=",
+      "hash": "sha256-5Xf4\/Rj363aSsuweUQJ2AX2BWlbB\/IAXjAFp5T5oP3Y=",
       "url": "_framework\/GestionGastosWeb.pdb"
     },
     {
-      "hash": "sha256-pZDG8\/qnBDcBjLnTMqHBupk7EjsuVIR1go5Lug2YbT0=",
+      "hash": "sha256-iy6RZ0\/fyezG\/Okchg557cKVPmmtdK8oH5yjimzSDc8=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -1825,5 +1825,5 @@
       "url": "_content\/Blazored.Toast\/Blazored.Toast.bundle.scp.css"
     }
   ],
-  "version": "10c7jlgB"
+  "version": "oEZ3UE4l"
 };
