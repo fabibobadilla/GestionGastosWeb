@@ -53,6 +53,10 @@
       "url": "manifest.webmanifest"
     },
     {
+      "hash": "sha256-HpwN\/SxgldZRmIiTj3a6HyBrLPFsKf8CtiqglpAHfdg=",
+      "url": "appsettings.json"
+    },
+    {
       "hash": "sha256-gvHfnndfEu1tRf0rFb5988rWq7ITIotOaE8+AMbKYbc=",
       "url": "_framework\/blazor.webassembly.js"
     },
@@ -103,6 +107,10 @@
     {
       "hash": "sha256-cVPmlpx5ocKwnrcRzPoD8CrBlsDqDB0Q85Sl2KpQpxk=",
       "url": "_framework\/Firebase.Auth.wasm"
+    },
+    {
+      "hash": "sha256-TEKG\/cNSoOZodwmzQZnJGfLLtlbGu\/LHNpdjgWHPUD4=",
+      "url": "_framework\/GestionGastosShared.wasm"
     },
     {
       "hash": "sha256-8KaSQQKzkSLxYo0ViQQKmvLoat2EMnYmC4Q2Ft6zU7M=",
@@ -961,23 +969,15 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-5XisXAySAipCH9AIdoSXIoNrnIgdtw5t2QXPkFB0w4I=",
-      "url": "_framework\/GestionGastosShared.wasm"
-    },
-    {
-      "hash": "sha256-Dnl8jaF8YzVG2o6sSUhBqlya+krCuEmKb22Ss0+Yi00=",
-      "url": "_framework\/GestionGastosShared.pdb"
-    },
-    {
-      "hash": "sha256-w+fl3aHjL7S4jH7Y8qnXE4MhJKKmMp7petmdejAA0RU=",
+      "hash": "sha256-oio06PP1ZRsAxrDfAt2DQeJAy2ap39Y6mVbLzcQFNyQ=",
       "url": "_framework\/GestionGastosWeb.wasm"
     },
     {
-      "hash": "sha256-mpiqwiehqz94NLqOqxQGc\/AXNxeccRVad6AUJ3+ADUY=",
+      "hash": "sha256-VJo5ruz625bfPJQ9vCGfIcpelLN0UXCBoyh5xnr3BX8=",
       "url": "_framework\/GestionGastosWeb.pdb"
     },
     {
-      "hash": "sha256-AVc1Hxaz9Ha+YjYjypfms4TZAcxoT2AXkdFCemvpZsQ=",
+      "hash": "sha256-pZDG8\/qnBDcBjLnTMqHBupk7EjsuVIR1go5Lug2YbT0=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -1825,5 +1825,5 @@
       "url": "_content\/Blazored.Toast\/Blazored.Toast.bundle.scp.css"
     }
   ],
-  "version": "yG5tZjxo"
+  "version": "10c7jlgB"
 };

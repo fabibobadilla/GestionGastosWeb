@@ -193,6 +193,21 @@
           }
         }
       },
+      "GestionGastosShared/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Blazored.LocalStorage": "4.5.0",
+          "Blazored.Toast": "4.2.1",
+          "CurrieTechnologies.Razor.SweetAlert2": "5.6.0",
+          "EPPlus": "7.5.2"
+        },
+        "compile": {
+          "lib/net8.0/GestionGastosShared.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/GestionGastosShared.dll": {}
+        }
+      },
       "Lambda2Js/3.1.4": {
         "type": "package",
         "compile": {
@@ -931,22 +946,6 @@
         "build": {
           "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
-      },
-      "GestionGastosShared/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "Blazored.LocalStorage": "4.5.0",
-          "Blazored.Toast": "4.2.1",
-          "CurrieTechnologies.Razor.SweetAlert2": "5.6.0",
-          "EPPlus": "7.5.2"
-        },
-        "compile": {
-          "bin/placeholder/GestionGastosShared.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GestionGastosShared.dll": {}
-        }
       }
     },
     "net8.0/browser-wasm": {
@@ -1139,6 +1138,21 @@
           "lib/netstandard2.0/Firebase.Auth.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "GestionGastosShared/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Blazored.LocalStorage": "4.5.0",
+          "Blazored.Toast": "4.2.1",
+          "CurrieTechnologies.Razor.SweetAlert2": "5.6.0",
+          "EPPlus": "7.5.2"
+        },
+        "compile": {
+          "lib/net8.0/GestionGastosShared.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/GestionGastosShared.dll": {}
         }
       },
       "Lambda2Js/3.1.4": {
@@ -1861,22 +1875,6 @@
         "build": {
           "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
-      },
-      "GestionGastosShared/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "Blazored.LocalStorage": "4.5.0",
-          "Blazored.Toast": "4.2.1",
-          "CurrieTechnologies.Razor.SweetAlert2": "5.6.0",
-          "EPPlus": "7.5.2"
-        },
-        "compile": {
-          "bin/placeholder/GestionGastosShared.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GestionGastosShared.dll": {}
-        }
       }
     }
   },
@@ -2193,6 +2191,18 @@
         "firebaseauthentication.net.nuspec",
         "lib/netstandard2.0/Firebase.Auth.dll",
         "lib/netstandard2.0/Firebase.Auth.xml"
+      ]
+    },
+    "GestionGastosShared/1.0.0": {
+      "sha512": "i3uV61PkyyLgwmherXzruqjovNbHsweeCQ4UGFd3s1dvkMLFT6THyelqKXjKvgEjPoaOqVUuR6gFxYevfYFd2g==",
+      "type": "package",
+      "path": "gestiongastosshared/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "gestiongastosshared.1.0.0.nupkg.sha512",
+        "gestiongastosshared.nuspec",
+        "lib/net8.0/GestionGastosShared.dll"
       ]
     },
     "Lambda2Js/3.1.4": {
@@ -3850,11 +3860,6 @@
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
-    },
-    "GestionGastosShared/1.0.0": {
-      "type": "project",
-      "path": "../Gestion_Gastos.Shared/GestionGastosShared.csproj",
-      "msbuildProject": "../Gestion_Gastos.Shared/GestionGastosShared.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3909,11 +3914,7 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {
-            "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\Gestion_Gastos.Shared\\GestionGastosShared.csproj": {
-              "projectPath": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\Gestion_Gastos.Shared\\GestionGastosShared.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -3962,6 +3963,10 @@
           "FirebaseAuthentication.net": {
             "target": "Package",
             "version": "[4.1.0, )"
+          },
+          "GestionGastosShared": {
+            "target": "Package",
+            "version": "[1.0.0, )"
           },
           "Microsoft.AspNetCore.Components.WebAssembly": {
             "target": "Package",

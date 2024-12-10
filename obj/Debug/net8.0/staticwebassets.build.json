@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "waj2bLaGnelGuoJAm9Uip4u5RZ2sM4wKDBHxICYSTO0=",
+  "Hash": "ia7Aq9ew194xDkCMz7atICaLZn9occJchjC/s2F6Xe0=",
   "Source": "GestionGastosWeb",
   "BasePath": "/",
   "Mode": "Root",
@@ -4385,25 +4385,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\obj\\Debug\\net8.0\\webcil\\Firebase.Auth.wasm"
-    },
-    {
-      "Identity": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\GestionGastosShared.pdb",
-      "SourceId": "GestionGastosWeb",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/GestionGastosShared.pdb",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "WasmResource",
-      "AssetTraitValue": "symbol",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\Gestion_Gastos.Shared\\bin\\Debug\\net8.0\\GestionGastosShared.pdb"
     },
     {
       "Identity": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\GestionGastosShared.wasm",
@@ -11151,25 +11132,6 @@
       "OriginalItemSpec": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.ComponentModel.Annotations.wasm"
     },
     {
-      "Identity": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\obj\\Debug\\net8.0\\compressed\\khfjswb7ap.gz",
-      "SourceId": "GestionGastosWeb",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/GestionGastosShared.pdb.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\GestionGastosShared.pdb",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\GestionGastosShared.pdb"
-    },
-    {
       "Identity": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\obj\\Debug\\net8.0\\compressed\\kyp4yusnw0.gz",
       "SourceId": "GestionGastosWeb",
       "SourceType": "Computed",
@@ -12916,6 +12878,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "obj\\Debug\\net8.0\\service-worker-assets.js.build"
+    },
+    {
+      "Identity": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\appsettings.json",
+      "SourceId": "GestionGastosWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "appsettings.json",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "settings",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\appsettings.json"
     },
     {
       "Identity": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\assets\\imgs\\background-1.jpg",

@@ -22,7 +22,10 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+// Configurar la lectura del archivo appsettings.json
+var configuration = builder.Configuration;
+//builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(configuration["ApiUrl"]) });
 builder.Services.AddSyncfusionBlazor();
 
 builder.Services.AddScoped<AuthService>();

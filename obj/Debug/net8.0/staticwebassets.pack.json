@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\service-worker.js"
     },
     {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\appsettings.json",
+      "PackagePath": "staticwebassets\\appsettings.json"
+    },
+    {
       "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\assets\\imgs\\Logo-1.png",
       "PackagePath": "staticwebassets\\assets\\imgs\\Logo-1.png"
     },

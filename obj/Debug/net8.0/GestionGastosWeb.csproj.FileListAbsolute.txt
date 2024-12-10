@@ -14,7 +14,6 @@ C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\www
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\wwwroot\_framework\dotnet.runtime.8.0.5.6p3xpnmd6a.js
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\wwwroot\_framework\dotnet.runtime.js.map
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\wwwroot\_framework\Firebase.Auth.wasm
-C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\wwwroot\_framework\GestionGastosShared.pdb
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\wwwroot\_framework\GestionGastosShared.wasm
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\wwwroot\_framework\GestionGastosWeb.pdb
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\wwwroot\_framework\GestionGastosWeb.wasm
@@ -363,7 +362,6 @@ C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\www
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\wwwroot\_framework\System.Security.Cryptography.Csp.wasm.gz
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\wwwroot\_framework\System.Net.Http.wasm.gz
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\wwwroot\_framework\System.ComponentModel.Annotations.wasm.gz
-C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\wwwroot\_framework\GestionGastosShared.pdb.gz
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\wwwroot\_framework\System.Linq.wasm.gz
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\wwwroot\_framework\System.Linq.Parallel.wasm.gz
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\wwwroot\_framework\Newtonsoft.Json.wasm.gz
@@ -670,7 +668,6 @@ C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\icu
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\icudt_EFIGS.dat
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\icudt_no_CJK.dat
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\GestionGastosShared.dll
-C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\GestionGastosShared.pdb
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\GestionGastosWeb.csproj.AssemblyReference.cache
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\GestionGastosWeb.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\GestionGastosWeb.AssemblyInfoInputs.cache
@@ -1128,7 +1125,6 @@ C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\com
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\compressed\9k0iyrzvub.gz
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\compressed\1nj8j5sp05.gz
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\compressed\i1jww1l703.gz
-C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\compressed\khfjswb7ap.gz
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\compressed\0mrl5vawmz.gz
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\compressed\fki1ijzmik.gz
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\compressed\fveyapdap7.gz
@@ -1175,3 +1171,4 @@ C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\com
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\compressed\yb24ougnbt.gz
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\compressed\eo5zvi22qk.gz
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\scopedcss\Widgets\ExcelReport.razor.rz.scp.css
+C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\GestionGastosWeb.sourcelink.json

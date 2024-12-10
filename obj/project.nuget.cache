@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lok+KqoboZ8=",
+  "dgSpecHash": "us8KFF3ut40=",
   "success": true,
   "projectFilePath": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\GestionGastosWeb.csproj",
   "expectedPackageFiles": [
@@ -15,6 +15,7 @@
     "C:\\Users\\fabia\\.nuget\\packages\\epplus.interfaces\\7.5.0\\epplus.interfaces.7.5.0.nupkg.sha512",
     "C:\\Users\\fabia\\.nuget\\packages\\epplus.system.drawing\\7.5.0\\epplus.system.drawing.7.5.0.nupkg.sha512",
     "C:\\Users\\fabia\\.nuget\\packages\\firebaseauthentication.net\\4.1.0\\firebaseauthentication.net.4.1.0.nupkg.sha512",
+    "C:\\Users\\fabia\\.nuget\\packages\\gestiongastosshared\\1.0.0\\gestiongastosshared.1.0.0.nupkg.sha512",
     "C:\\Users\\fabia\\.nuget\\packages\\lambda2js\\3.1.4\\lambda2js.3.1.4.nupkg.sha512",
     "C:\\Users\\fabia\\.nuget\\packages\\microsoft.aspnetcore.authorization\\8.0.11\\microsoft.aspnetcore.authorization.8.0.11.nupkg.sha512",
     "C:\\Users\\fabia\\.nuget\\packages\\microsoft.aspnetcore.components\\8.0.11\\microsoft.aspnetcore.components.8.0.11.nupkg.sha512",
