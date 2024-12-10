@@ -1,0 +1,18 @@
+.footer[b-cwqt5vd184] {
+    background-color: #000; /* Color de fondo */
+    color: white; /* Color del texto */
+    text-align: center; /* Centrar texto */
+    padding: 5px; /* Espaciado interno */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+    .footer a[b-cwqt5vd184] {
+        color: #ff5722; /* Color de los enlaces */
+        text-decoration: none; /* Sin subrayado */
+    }
+
+        .footer a:hover[b-cwqt5vd184] {
+            text-decoration: underline;
+        }

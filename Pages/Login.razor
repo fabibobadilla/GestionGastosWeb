@@ -1,0 +1,216 @@
+﻿@layout LoginLayout
+@page "/login"
+
+@inject Blazored.LocalStorage.ILocalStorageService LocalStorage
+
+@inject AuthService AuthService
+@inject NavigationManager Navigation
+
+<PageTitle>Iniciar Sesión</PageTitle>
+<div class="main-container">
+    <div class="container custom-container @currentMenuAnimation">
+        @* LOGIN *@
+        <div class="row custom-position">
+            <div id="menu1" class="col-12 col-md-6 d-flex align-items-center justify-content-around flex-column login-background" style="background-color: lightblue;">
+                <!-- Contenido del primer div interno -->
+                <img src="/assets/imgs/Logo.png" class="" alt="Logo" />
+
+
+            </div>
+            @if (isLoginMenu)
+            {
+                <div id="menu2" class="col-12 col-md-6 d-flex align-items-center flex-column justify-content-center login-form " style="height: 400px;">
+                    <!-- Contenido del segundo div interno -->
+                    <h3>Iniciar Sesión</h3>
+
+                    <form>
+                        <!-- Email -->
+                        <div class="form-group">
+                            <input type="email" id="email" @bind="Email" required placeholder=" " style="height: 35px;" />
+                            <label for="email">Correo Electrónico</label>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" id="password" @bind="Password" required placeholder="" style="height: 35px;">
+                            <label for="password">Contraseña</label>
+                        </div>
+
+                        <!-- Botón de Iniciar Sesión -->
+                        <div class="form-group">
+                            <button type="button" class="btn btn-enviar" @onclick="HandleLogin">Iniciar Sesión</button>
+                        </div>
+
+                        <!-- Mensaje de Error -->
+                        @if (!string.IsNullOrEmpty(ErrorMessage))
+                        {
+                            <div class="alert alert-danger">@ErrorMessage</div>
+                        }
+                        <div class="form-group">
+                            <p style="text-shadow: none;">
+                                ¿No tienes cuenta? <a @onclick="SwitchToRegister" style="cursor: pointer;text-shadow: 0 0 10px #00ffff;color: #00aaaa;">Regístrate</a>
+                            </p>
+                        </div>
+                    </form>
+
+
+                </div>
+            }
+            @* Registrarse *@
+            else
+            {
+                <div class="col-12 col-md-6 d-flex align-items-center flex-column justify-content-center login-form " style="height: 400px;">
+                    <!-- Contenido del segundo div interno -->
+                    <h3>Registrarse</h3>
+
+                    <form @onsubmit="HandleRegister">
+                        <!-- Email -->
+                        <div class="form-group">
+                            <input @bind="RegisterNombre" type="text" id="user" required placeholder=" " style="height: 35px;" />
+                            <label for="user">Usuario</label>
+                        </div>
+
+                        <div class="form-group">
+                            <input @bind="RegisterEmail" type="email" id="email" required placeholder=" " style="height: 35px;" />
+                            <label for="email">Correo Electrónico</label>
+                        </div>
+
+                        <div class="form-group">
+                            <input @bind="RegisterPassword" type="password" id="password" required placeholder="" style="height: 35px;">
+                            <label for="password">Contraseña</label>
+                        </div>
+
+                        <!-- Botón de Iniciar Sesión -->
+                        <div class="form-group">
+                            <button type="button" class="btn btn-enviar" @onclick="HandleRegister">Registrarse</button>
+                        </div>
+
+                        <!-- Mensaje de Error -->
+                        @if (!string.IsNullOrEmpty(ErrorMessage))
+                        {
+                            <div class="alert alert-danger">@ErrorMessage</div>
+                        }
+                        <div class="form-group">
+                            <p style="text-shadow: none;">
+                                ¿Ya tienes cuenta? <a @onclick="SwitchToLogin" style="cursor: pointer;text-shadow: 0 0 10px #00ffff;color: #00aaaa;">Inicia Sesión</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private bool isLoginMenu = true;
+    private string currentMenuAnimation = string.Empty;
+    private string cambioMenu = string.Empty;
+
+    private void SwitchToRegister()
+    {
+        ApplyAnimation("fade-out");
+        cambioMenu = "cambio-menu";
+        isLoginMenu = false;
+        ApplyAnimation("fade-in");
+    }
+
+    private void SwitchToLogin()
+    {
+        ApplyAnimation("fade-out");
+        cambioMenu = "";
+        isLoginMenu = true;
+        ApplyAnimation("fade-in");
+    }
+
+    private void ApplyAnimation(string animation)
+    {
+        currentMenuAnimation = animation;
+        // Permite que la animación CSS se procese antes de mostrar el nuevo menú
+        InvokeAsync(async () =>
+        {
+            await Task.Delay(500); // Duración de la animación en milisegundos
+            currentMenuAnimation = string.Empty;
+        });
+    }
+
+
+    private string Email { get; set; } = string.Empty;
+    private string Password { get; set; } = string.Empty;
+    private string ErrorMessage { get; set; } = string.Empty;
+
+    private string RegisterNombre { get; set; } = string.Empty;
+    private string RegisterEmail { get; set; } = string.Empty;
+    private string RegisterPassword { get; set; } = string.Empty;
+    private string RegisterErrorMessage { get; set; } = string.Empty;
+
+    // Método para manejar el inicio de sesión
+    private async Task HandleLogin()
+    {
+        try
+        {
+            var loginModel = new LoginModel { Email = Email, Password = Password };
+            var token = await AuthService.Login(loginModel);
+            await LocalStorage.SetItemAsync("authToken", token);
+            Navigation.NavigateTo("/dashboard"); // Redirigir al home o página deseada
+        }
+        catch (HttpRequestException ex)
+        {
+            // ErrorMessage = $"Error: {ex.Message}";
+            await ShowErrorAlert();
+        }
+    }
+
+    // Método para manejar el registro
+    private async Task HandleRegister()
+    {
+        try
+        {
+            var registerModel = new RegisterModel
+                {
+                    Nombre = RegisterNombre,
+                    Email = RegisterEmail,
+                    Password = RegisterPassword
+                };
+            Console.WriteLine(registerModel);
+            var token = await AuthService.Register(registerModel);
+            await LocalStorage.SetItemAsync("authToken", token);
+            Navigation.NavigateTo("/dashboard"); // Redirigir al home o página deseada
+        }
+        catch (HttpRequestException ex)
+        {
+            RegisterErrorMessage = $"Error: {ex.Message}";
+        }
+    }
+}
+
+@if (ShowAlert)
+{
+    <div class="alert alert-@AlertType alert-dismissible fade show" role="alert">
+        @AlertMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@code {
+    private bool ShowAlert;
+    private string AlertType = "success";
+    private string AlertMessage = "";
+
+    private async Task ShowSuccessAlert()
+    {
+        ShowAlert = true;
+        AlertType = "success";
+        AlertMessage = "Operación completada con éxito.";
+        await Task.Delay(2000);
+        ShowAlert = false;
+    }
+
+    private async Task ShowErrorAlert()
+    {
+        ShowAlert = true;
+        AlertType = "danger";
+        AlertMessage = "Ocurrió un error en la operación.";
+        await Task.Delay(2000);
+        ShowAlert = false;
+    }
+}

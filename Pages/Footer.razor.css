@@ -1,0 +1,18 @@
+﻿.footer {
+    background-color: #000; /* Color de fondo */
+    color: white; /* Color del texto */
+    text-align: center; /* Centrar texto */
+    padding: 5px; /* Espaciado interno */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+    .footer a {
+        color: #ff5722; /* Color de los enlaces */
+        text-decoration: none; /* Sin subrayado */
+    }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }

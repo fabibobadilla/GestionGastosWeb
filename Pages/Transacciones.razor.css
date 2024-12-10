@@ -1,0 +1,69 @@
+﻿.modal {
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0005;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.modal-content {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 10px #b4bdbc;
+    border-radius: 10px;
+    height: 500px;
+    width: 400px;
+}
+
+.header-transacciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-container {
+    width: 95% !important;
+    height: auto;
+    padding: 10px !important;
+}
+
+.fila-transaccion:hover {
+    background-color: #61b9d566;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.alert {
+    z-index: 10;
+    width: 400px;
+    overflow: auto;
+    position: fixed;
+    bottom: 10px;
+    left: 40%;
+}
+
+.btn-order {
+    border-radius: 1.5rem;
+    padding: 0 5px;
+    background-color: white;
+    border: .5px solid #000000;
+    font-style: italic;
+}
+
+    .btn-order:hover {
+        background-color: #bdbdbd;
+        box-shadow: 0 0 0px #548bb0;
+    }

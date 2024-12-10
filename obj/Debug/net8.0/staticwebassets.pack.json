@@ -1,0 +1,93 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\obj\\Debug\\net8.0\\compressed\\jsievqjb6i.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\obj\\Debug\\net8.0\\scopedcss\\bundle\\GestionGastosWeb.styles.css",
+      "PackagePath": "staticwebassets\\GestionGastosWeb.styles.css"
+    },
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\obj\\Debug\\net8.0\\service-worker-assets.js",
+      "PackagePath": "staticwebassets\\service-worker-assets.js"
+    },
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\obj\\Debug\\net8.0\\service-worker\\service-worker.published.js",
+      "PackagePath": "staticwebassets\\service-worker.js"
+    },
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\assets\\imgs\\Logo-1.png",
+      "PackagePath": "staticwebassets\\assets\\imgs\\Logo-1.png"
+    },
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\assets\\imgs\\Logo-2.png",
+      "PackagePath": "staticwebassets\\assets\\imgs\\Logo-2.png"
+    },
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\assets\\imgs\\Logo.png",
+      "PackagePath": "staticwebassets\\assets\\imgs\\Logo.png"
+    },
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\assets\\imgs\\background-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\imgs\\background-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\assets\\imgs\\background-2.avif",
+      "PackagePath": "staticwebassets\\assets\\imgs\\background-2.avif"
+    },
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\assets\\imgs\\background-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\imgs\\background-3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\assets\\imgs\\background-3.png",
+      "PackagePath": "staticwebassets\\assets\\imgs\\background-3.png"
+    },
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\assets\\imgs\\background-4.jpg",
+      "PackagePath": "staticwebassets\\assets\\imgs\\background-4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\icon-192.png",
+      "PackagePath": "staticwebassets\\icon-192.png"
+    },
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\icon-512.png",
+      "PackagePath": "staticwebassets\\icon-512.png"
+    },
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\manifest.webmanifest",
+      "PackagePath": "staticwebassets\\manifest.webmanifest"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.GestionGastosWeb.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.GestionGastosWeb.props",
+      "PackagePath": "build\\GestionGastosWeb.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.GestionGastosWeb.props",
+      "PackagePath": "buildMultiTargeting\\GestionGastosWeb.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.GestionGastosWeb.props",
+      "PackagePath": "buildTransitive\\GestionGastosWeb.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

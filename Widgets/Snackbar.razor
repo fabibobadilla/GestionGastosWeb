@@ -1,0 +1,30 @@
+﻿<div>
+    @if (ShowAlert)
+    {
+        <div class="alert alert-@AlertType alert-dismissible fade show" role="alert">
+            @AlertMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+</div>
+
+@code {
+    private bool ShowAlert;
+
+    [Parameter]
+    public string AlertType { get; set; } = "success"; // Por defecto, 'success'
+
+    [Parameter]
+    public string AlertMessage { get; set; } = string.Empty; // Mensaje de la alerta
+
+    protected override async Task OnParametersSetAsync()
+    {
+        // Mostrar la alerta automáticamente si se pasa un mensaje
+        if (!string.IsNullOrWhiteSpace(AlertMessage))
+        {
+            ShowAlert = true;
+            await Task.Delay(2000); // Mostrar por 2 segundos
+            ShowAlert = false;
+        }
+    }
+}

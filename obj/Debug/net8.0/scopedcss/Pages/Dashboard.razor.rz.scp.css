@@ -1,0 +1,11 @@
+.dashboard[b-pups6hrtd0] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+    height: auto;
+    padding: 10px 10px;
+    background-color: #f3f3f3;
+}

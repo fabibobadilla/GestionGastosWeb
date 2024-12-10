@@ -1,0 +1,28 @@
+﻿@inject ExcelReportService ExcelService
+@inject IJSRuntime JSRuntime
+
+<div class="download-excel">
+    <button @onclick="DownloadExcel">Descargar Reporte</button>
+</div>
+
+@code {
+    [Parameter]
+    public List<Gasto>? ListaTransacciones { get; set; }
+
+    private async Task DownloadExcel()
+    {
+        try
+        {
+
+            // Generar el archivo Excel
+            var excelData = await ExcelService.GenerateExcelReportAsync(ListaTransacciones);
+
+            // Descargar el archivo en el navegador
+            await JSRuntime.InvokeVoidAsync("downloadFile", "reporte.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", excelData);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error al generar el reporte: {ex.Message}");
+        }
+    }
+}

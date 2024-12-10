@@ -1,0 +1,72 @@
+﻿@layout MainLayout
+@page "/dashboard"
+
+@using GestionGastosWeb.Pages
+@inject CategoriasService CategoriasService
+
+<div class="dashboard">
+    <div class="card" style="width: 18rem; background-color: ;">
+        @* <img class="card-img-top" src="..." alt="Card image cap"> *@
+        @foreach (var categoria in categorias)
+        {
+            <div class="card-body">
+                <h5 class="card-title">@categoria.Nombre</h5>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        }
+    </div>
+</div>
+
+<div>
+    @if (ShowAlert)
+    {
+        <div class="alert alert-@AlertType alert-dismissible fade show" role="alert">
+            @AlertMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <button class="btn btn-primary" @onclick="ShowSuccessAlert">Mostrar Alerta de Éxito</button>
+    <button class="btn btn-danger" @onclick="ShowErrorAlert">Mostrar Alerta de Error</button>
+</div>
+
+@code {
+    private bool ShowAlert;
+    private string AlertType = "success";
+    private string AlertMessage = "";
+
+    private async Task ShowSuccessAlert()
+    {
+        ShowAlert = true;
+        AlertType = "success";
+        AlertMessage = "Operación completada con éxito.";
+        await Task.Delay(2000);
+        ShowAlert = false;
+    }
+
+    private async Task ShowErrorAlert()
+    {
+        ShowAlert = true;
+        AlertType = "danger";
+        AlertMessage = "Ocurrió un error en la operación.";
+        await Task.Delay(2000);
+        ShowAlert = false;
+    }
+}
+
+
+@code {
+
+    private List<Categoria> categorias;
+
+    protected override async Task OnInitializedAsync()
+    {
+        categorias = await CategoriasService.ObtenerCategorias();
+        // Convertir la lista en una cadena separada por comas
+
+        foreach (var categoria in categorias)
+        {
+            Console.WriteLine("categorias: " + categoria);
+        }
+    }
+}

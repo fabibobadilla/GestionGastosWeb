@@ -1,0 +1,416 @@
+﻿@page "/transacciones"
+
+@inject CategoriasService CategoriaService
+@inject GastosService GastoService
+@using GestionGastosShared.Models
+
+
+
+<div class="w-100 text-center title-main">
+    <h4>Transacciones</h4>
+</div>
+<div class="header-transacciones">
+    <button @onclick="abrirModal" class="btn-success btn">Cargar transacción</button>
+    <GestionGastosWeb.Widgets.ExcelReport ListaTransacciones="gastos"></GestionGastosWeb.Widgets.ExcelReport>
+</div>
+
+@if (isLoading)
+{
+    <div class="loading">
+        <GestionGastosWeb.Widgets.Loading></GestionGastosWeb.Widgets.Loading>
+    </div>
+}
+else
+{
+    <div class="table-container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Monto</th>
+                    <th>Descripción</th>
+                    <th>Categoría</th>
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th></th>
+                    <th></th>
+                    <th>
+                        <!-- Botón para cambiar el orden -->
+                        <button class="btn-order" @onclick="ToggleOrder">Invertir Orden</button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var gasto in (isAscendingOrder ? gastos.OrderBy(g => g.FechaCarga) : gastos.OrderByDescending(g => g.FechaCarga)).Select((transaccion, index) => new { transaccion, index }))
+                {
+                    <tr class="fila-transaccion">
+                        <td>@gasto.transaccion.Monto</td>
+                        <td>@gasto.transaccion.Descripcion</td>
+                        <td>@(categorias.FirstOrDefault(c => c.Id == gasto.transaccion.CategoriaId)?.Nombre ?? "Sin categoría")</td>
+                        <td>@gasto.transaccion.FechaCarga</td>
+                        <td>@(gasto.transaccion.Tipo == "GASTO" ? "Gasto" : "Ingreso")</td>
+                        <td>
+                            @if (gasto.transaccion.Tipo == "GASTO")
+                            {
+                                <span class="material-icons" style="color: red;">arrow_downward</span>
+                            }
+                            else
+                            {
+                                <span class="material-icons" style="color: green;">arrow_upward</span>
+
+                            }
+                        </td>
+                        <td>
+                            <button @onclick="() => EditarTransaccion(gasto.index)" class="btn-primary btn">Editar</button>
+                        </td>
+                        <td>
+                            <button @onclick="() => EliminarTransaccion(gasto.index)" class="btn-danger btn">Eliminar</button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<!-- Modal -->
+@if (modalOpen)
+{
+    <div class="modal show d-block" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Añadir Gasto</h5>
+                    <button type="button" class="btn-close" @onclick="abrirModal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulario para añadir el gasto -->
+                    <form>
+                        <!-- Campo: Descripción -->
+
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <input type="text" id="descripcion" class="form-control" @bind="nuevoGasto.Descripcion" />
+                            @* @if (string.IsNullOrWhiteSpace(nuevoGasto.Descripcion))
+                        {
+                        <p class="text-danger">La descripción es obligatoria.</p>
+                        } *@
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="transaccion" class="form-label">Tipo de transacción</label>
+                            <select id="transaccion" class="form-select" @bind="nuevoGasto.Tipo">
+                                <option value="">Selecciona una categoría</option>
+                                <option value="INGRESO">Ingreso</option>
+                                <option value="GASTO">Gasto</option>
+                            </select>
+                            @* @if (nuevoGasto.CategoriaId <= 0)
+                        {
+                        <p class="text-danger">Debes seleccionar una categoría.</p>
+                        } *@
+                        </div>
+
+                        <!-- Campo: Monto -->
+                        <div class="mb-3">
+                            <label for="monto" class="form-label">Monto</label>
+                            <input type="number" id="monto" class="form-control" @bind="nuevoGasto.Monto" />
+                            @* @if (string.IsNullOrWhiteSpace(nuevoGasto.Monto))
+                        {
+                        <p class="text-danger">El monto es obligatorio.</p>
+                        } *@
+                        </div>
+
+                        <!-- Campo: Categoría -->
+                        <div class="mb-3">
+                            <label for="categoria" class="form-label">Categoría</label>
+                            <select id="categoria" class="form-select" @bind="nuevoGasto.CategoriaId">
+                                <option value="0">Selecciona una categoría</option>
+                                @foreach (var categoria in categorias)
+                                {
+                                    <option value="@categoria.Id">@categoria.Nombre</option>
+                                }
+                            </select>
+                            @* @if (nuevoGasto.CategoriaId <= 0)
+                        {
+                        <p class="text-danger">Debes seleccionar una categoría.</p>
+                        } *@
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" @onclick="abrirModal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" @onclick="GuardarGasto">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (isEditing)
+{
+    <div class="modal show d-block" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Añadir Gasto</h5>
+                    <button type="button" class="btn-close" @onclick="abrirModal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulario para añadir el gasto -->
+                    <form>
+                        <!-- Campo: Descripción -->
+
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <input type="text" id="descripcion" class="form-control" @bind="transaccionToEdit.Descripcion" />
+                            @* @if (string.IsNullOrWhiteSpace(nuevoGasto.Descripcion))
+                        {
+                        <p class="text-danger">La descripción es obligatoria.</p>
+                        } *@
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="transaccion" class="form-label">Tipo de transacción</label>
+                            <select id="transaccion" class="form-select" @bind="transaccionToEdit.Tipo">
+                                <option value="">Selecciona una categoría</option>
+                                <option value="INGRESO">Ingreso</option>
+                                <option value="GASTO">Gasto</option>
+                            </select>
+                            @* @if (nuevoGasto.CategoriaId <= 0)
+                        {
+                        <p class="text-danger">Debes seleccionar una categoría.</p>
+                        } *@
+                        </div>
+
+                        <!-- Campo: Monto -->
+                        <div class="mb-3">
+                            <label for="monto" class="form-label">Monto</label>
+                            <input type="number" id="monto" class="form-control" @bind="transaccionToEdit.Monto" />
+                            @* @if (string.IsNullOrWhiteSpace(nuevoGasto.Monto))
+                        {
+                        <p class="text-danger">El monto es obligatorio.</p>
+                        } *@
+                        </div>
+
+                        <!-- Campo: Categoría -->
+                        <div class="mb-3">
+                            <label for="categoria" class="form-label">Categoría</label>
+                            <select id="categoria" class="form-select" @bind="transaccionToEdit.CategoriaId">
+                                <option value="0">Selecciona una categoría</option>
+                                @foreach (var categoria in categorias)
+                                {
+                                    <option value="@categoria.Id">@categoria.Nombre</option>
+                                }
+                            </select>
+                            @* @if (nuevoGasto.CategoriaId <= 0)
+                        {
+                        <p class="text-danger">Debes seleccionar una categoría.</p>
+                        } *@
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" @onclick="Cerrar">Cancelar</button>
+                    <button type="button" class="btn btn-primary" @onclick="SaveChanges">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (string.IsNullOrWhiteSpace(nuevoGasto.Descripcion) ||
+string.IsNullOrWhiteSpace(nuevoGasto.Monto) ||
+nuevoGasto.CategoriaId <= 0)
+{
+    @* <p class="text-danger">Por favor, completa todos los campos obligatorios.</p> *@
+
+}
+
+@if (ShowAlert)
+{
+    <div class="alert alert-@AlertType alert-dismissible fade show" role="alert">
+        @AlertMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (isConfirmation)
+{
+    <div class="modal show d-block confirmation" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">¿Está seguro que desea eliminar la transacción?</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Esta acción no se puede deshacer.</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" @onclick="Eliminar">Eliminar</button>
+                    <button type="button" class="btn btn-secondary" @onclick="Cerrar">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@code {
+    private bool isConfirmation = false;
+    private int IdTransaccion;
+    private bool ShowAlert;
+    private string AlertType = "success";
+    private string AlertMessage = "";
+    private bool isEditing = false;
+    private bool isLoading = false;
+    private bool modalOpen = false;
+    private List<Categoria> categorias = new List<Categoria>();
+    private List<Gasto> gastos = new List<Gasto>();
+    private Gasto nuevoGasto = new Gasto();
+    private Gasto transaccionToEdit = new Gasto();
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Cargar las categorías desde el servicio.
+        categorias = await CategoriaService.ObtenerCategorias();
+        isLoading = true;
+        gastos = await GastoService.ObtenerGastos();
+        isLoading = false;
+    }
+    private async Task ShowSuccessAlert()
+    {
+        ShowAlert = true;
+        AlertType = "success";
+        AlertMessage = "Operación completada con éxito.";
+        StateHasChanged(); // Refrescar la interfaz
+        await Task.Delay(2000);
+        ShowAlert = false;
+        StateHasChanged(); // Refrescar de nuevo
+    }
+
+    private async Task ShowErrorAlert()
+    {
+        ShowAlert = true;
+        AlertType = "danger";
+        AlertMessage = "Ocurrió un error en la operación.";
+        StateHasChanged(); // Refrescar la interfaz
+        await Task.Delay(2000);
+        ShowAlert = false;
+        StateHasChanged(); // Refrescar la interfaz
+    }
+
+    public void abrirModal()
+    {
+        modalOpen = !modalOpen;
+        // Si abres el modal, inicializa `nuevoGasto`
+        if (modalOpen)
+        {
+            nuevoGasto = new Gasto
+                {
+                    FechaCarga = DateTime.Now,
+                    UsuarioId = 4 // Ajusta esto con el ID dinámico del usuario logueado
+                };
+        }
+    }
+
+    private void Cerrar()
+    {
+        isEditing = false;
+        isConfirmation = false;
+    }
+
+
+    private async Task GuardarGasto()
+    {
+        // Validación básica de campos requeridos
+        if (!string.IsNullOrWhiteSpace(nuevoGasto.Descripcion) &&
+            !string.IsNullOrWhiteSpace(nuevoGasto.Monto) &&
+            nuevoGasto.CategoriaId > 0)
+        {
+            try
+            {
+                // Guardar el gasto en el backend
+                await GastoService.AgregarGasto(nuevoGasto);
+
+                // Resetear el formulario y cerrar el modal
+                nuevoGasto = new Gasto
+                    {
+                        FechaCarga = DateTime.Now,
+                        UsuarioId = 4 // Puedes ajustar esto dinámicamente
+                    };
+                abrirModal();
+                // <GestionGastosWeb.Widgets.Snackbar AlertMessage="Ocurrió un error en la operación." AlertType="danger" />
+
+                // Recargar la lista de gastos
+                isLoading = true;
+                gastos = await GastoService.ObtenerGastos();
+                isLoading = false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al guardar el gasto: {ex.Message}");
+            }
+        }
+        else
+        {
+            // Mensajes de error para validaciones
+            if (string.IsNullOrWhiteSpace(nuevoGasto.Descripcion))
+                Console.WriteLine("La descripción no puede estar vacía.");
+            if (string.IsNullOrWhiteSpace(nuevoGasto.Monto))
+                Console.WriteLine("El monto no puede estar vacío.");
+            if (nuevoGasto.CategoriaId <= 0)
+                Console.WriteLine("Debes seleccionar una categoría.");
+        }
+    }
+
+    public void EditarTransaccion(int index)
+    {
+        var transaccionAEditar = gastos[index];
+        transaccionToEdit = transaccionAEditar;
+        isEditing = true;
+    }
+
+    private async Task SaveChanges()
+    {
+        await GastoService.ActualizarGasto(transaccionToEdit);
+        isEditing = false;
+        ShowSuccessAlert();
+        isLoading = true;
+        await GastoService.ObtenerGastos();
+        isLoading = false;
+    }
+
+    public void EliminarTransaccion(int index)
+    {
+        var transaccionId = gastos[index].Id;
+        IdTransaccion = transaccionId;
+        isConfirmation = true;
+
+    }
+
+    public async Task Eliminar()
+    {
+        var transaccionAEliminar = gastos.FirstOrDefault(g => g.Id == IdTransaccion);
+        await GastoService.EliminarGasto(IdTransaccion);
+        isConfirmation = false;
+        isLoading = true;
+        if (transaccionAEliminar != null)
+        {
+            gastos.Remove(transaccionAEliminar);  // Remueve el gasto de la lista
+        }
+        isLoading = false;
+        ShowSuccessAlert();
+    }
+
+
+    private bool isAscendingOrder = true;
+
+    // Método para invertir el orden de la lista
+    private void ToggleOrder()
+    {
+        isAscendingOrder = !isAscendingOrder;
+    }
+}

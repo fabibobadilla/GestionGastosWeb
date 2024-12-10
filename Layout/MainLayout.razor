@@ -1,0 +1,88 @@
+﻿@inherits LayoutComponentBase
+@using MudBlazor
+@inject NavigationManager Navigation
+@inject NavigationManager NavigationManager
+
+<div class="main-layout">
+    <!-- Navbar -->
+    <nav class="nav-bar row">
+        <div class="nav-left col-2">
+            <img src="/assets/imgs/Logo.png" alt="Logo" />
+        </div>
+        <div class="nav-center col-6">
+            <ul>
+                <li><a href="/dashboard" class="@GetActiveClass("/dashboard")">Dashboard</a></li>
+                <li><a href="/categorias" class="@GetActiveClass("/categorias")">Categorias</a></li>
+                <li><a href="/transacciones" class="@GetActiveClass("/transacciones")">Transacciones</a></li>
+                <li><a href="/reportes" class="@GetActiveClass("/reportes")">Reportes</a></li>
+                <li><a href="/about" class="@GetActiveClass("/about")">About</a></li>
+            </ul>
+        </div>
+        <div class="nav-right col-4">
+            <NavLink href="/ajustes" class="nav-link" active-class="active">Ajustes</NavLink>
+            <NavLink href="/micuenta" class="nav-link" active-class="active">Mi Cuenta</NavLink>
+            <img src="#" alt="Perfil" class="img-cuenta" />
+        </div>
+    </nav>
+
+    <i class="material-icons icon-menu" style="font-size: 36px; color: white; cursor: pointer" @onclick="Toggle">menu</i>
+    <!-- Contenido principal -->
+    <div class="container">
+        <div class="left-bar @(!show ? "not-show" : "")" style="@(!show ? "width: 0%;" : "")">
+            <div style="width: 70px; padding: 10px; background-color: black; border-radius: 50%; margin: 20px 0 50px 0">
+                <img src="/assets/imgs/Logo.png" style="width: 50px;" alt="Logo" />
+            </div>
+            <GestionGastosWeb.Widgets.NavLeft></GestionGastosWeb.Widgets.NavLeft>
+        </div>
+        <div class="main-container body">
+            @Body
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <Footer />
+</div>
+
+
+
+@code {
+    private string GetActiveClass(string href)
+    {
+        // Compara si la URL actual contiene el enlace
+        return Navigation.Uri.Contains(href) ? "nav-link active" : "nav-link";
+
+    }
+
+    private Boolean show = true;
+    private void Toggle()
+    {
+        show = !show;
+    }
+
+
+    // private string FadeClass = "fade-in";
+
+    // protected override void OnInitialized()
+    // {
+    //     NavigationManager.LocationChanged += OnLocationChanged;
+    // }
+
+    // private void OnLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    // {
+    //     FadeClass = "fade-out";
+    //     StateHasChanged();
+
+    //     // Esperar la animación antes de cambiar a fade-in
+    //     _ = Task.Delay(500).ContinueWith(_ =>
+    //     {
+    //         FadeClass = "fade-in";
+    //         InvokeAsync(StateHasChanged);
+    //     });
+    // }
+
+    // public void Dispose()
+    // {
+    //     NavigationManager.LocationChanged -= OnLocationChanged;
+    // }
+}
+

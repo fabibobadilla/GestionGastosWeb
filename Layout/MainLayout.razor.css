@@ -1,0 +1,199 @@
+﻿.nav-left {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    border: 1px solid #000;
+    padding-left: 150px
+}
+
+    .nav-left img {
+        width: 60px;
+        border: 1px solid #000;
+    }
+
+.nav-center ul {
+    height: 80%;
+    display: flex;
+    justify-content: start;
+    gap: 20px;
+    align-items: end;
+}
+
+    .nav-center ul li {
+        list-style: none;
+        color: white;
+    }
+
+
+
+.nav-right {
+    /*padding-right: 50px;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .nav-right ul {
+        white-space: nowrap;
+    }
+
+.img-cuenta {
+    width: 40px;
+    height: 40px;
+    border: 1px solid white;
+    border-radius: 3rem;
+}
+
+.active {
+    text-shadow: 0 0 20px grey;
+}
+
+.nav-bar {
+    background-color: #000;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100vw;
+}
+
+.main-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    background-color: wheat;
+    padding: 0 !important;
+}
+
+.body {
+    flex: 1;
+    overflow-y: auto; /* Si el contenido es largo, aparecerá un scroll vertical */
+    background-color: #f4f4f4; /* Color de fondo de la página */
+}
+
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+}
+
+    .nav-link.active {
+        color: #007BFF; /* Color de enlace activo */
+        font-weight: bold;
+    }
+
+    .nav-link:hover {
+        color: #0056b3;
+    }
+
+
+/*    ////////////// BARRA LATERAL ////////////////////*/
+
+.main-container {
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.left-bar {
+    background-color: wheat;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.main-layout {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh; /* Ocupar toda la altura de la ventana */
+}
+
+.container {
+    flex: 1; /* Permite que el contenedor principal crezca para llenar el espacio restante */
+    display: flex; /* Flex para organizar las columnas */
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
+
+.main-container {
+    flex: 1; /* Ocupar todo el ancho restante */
+    display: flex;
+    flex-direction: column; /* Asegura que las columnas se alineen horizontalmente */
+}
+
+
+.body {
+    flex: 1; /* Ocupar el espacio restante horizontal */
+    overflow-y: auto; /* Permite desplazamiento vertical si el contenido es muy largo */
+    background-color: #f4f4f4; /* Color de fondo para verificar visualmente */
+}
+
+.nav-bar {
+    height: auto;
+    background-color: #000;
+}
+
+.left-bar {
+    width: 20%; /* Ajusta el ancho de la barra lateral */
+    height: 100%; /* Asegura que ocupe toda la altura */
+    background-color: wheat;
+    transition: .3s ease-in-out;
+}
+
+.icon-menu {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+.left-bar {
+    transition: transform 0.5s ease, opacity 0.5s ease !important;
+    transform: translateX(0); /* Posición inicial */
+    opacity: 1; /* Completamente visible */
+}
+
+    .left-bar.not-show {
+        transform: translateX(-100%); /* Mover hacia la izquierda */
+        opacity: 0; /* Oculto */
+    }
+
+.left-bar {
+    transform: translateX(0); /* Volver a la posición original */
+    opacity: 1; /* Visible */
+}
+
+
+.main-container {
+    animation: .3s ease-in-out;
+}

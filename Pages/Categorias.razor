@@ -1,0 +1,219 @@
+﻿@page "/categorias"
+@inject CategoriasService CategoriasService
+
+
+<PageTitle>Categorías</PageTitle>
+
+@if (isLoading)
+{
+    <div class="loading">
+        <GestionGastosWeb.Widgets.Loading></GestionGastosWeb.Widgets.Loading>
+    </div>
+}
+else
+{
+    <div class="w-100 text-center title-main">
+        <h4>Categorias</h4>
+    </div>
+
+    <div class="header-categorias">
+        <button @onclick="showModalCreate" class="btn btn-success">Crear categoría</button>
+    </div>
+    <div class="div-categorias">
+        @foreach (var categoria in categorias.Select((categoria, index) => new { categoria, index }))
+        {
+            <div class="card">
+                <div class="card-body" style="display: flex; flex-direction: column; justify-content: space-around; align-items: center">
+                    <h5 class="card-title">@categoria.categoria.Nombre</h5>
+                    <div class="w-100">
+                        <button class="btn btn-primary" @onclick="() => EditarCategoria(categoria.index)">Editar</button>
+                        <button class="btn btn-danger" @onclick="() => EliminarCategoria(categoria.index)">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div>
+        @if (isEditing)
+        {
+            <div class="modal">
+                <div class="modal-content">
+                    <h3>Editar Categoría</h3>
+                    <form @onsubmit="SaveChanges">
+                        <div class="form-group">
+                            <label for="categoriaNombre">Nuevo Nombre</label>
+                            <input type="text" id="categoriaNombre" @bind="categoriaToEdit.Nombre" class="form-control" />
+                        </div>
+                        <div class="d-flex justify-content-between align-content-center w-100 h-auto">
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                            <button @onclick="Cerrar" class="btn btn-danger">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+    <div>
+        @if (isCreating)
+        {
+            <div class="modal">
+                <div class="modal-content">
+                    <h3>Crear Categoría</h3>
+                    <form @onsubmit="CargarCategoria">
+                        <div class="form-group">
+                            <label for="categoriaNombre">Nombre</label>
+                            <input type="text" id="categoriaNombre" @bind="categoriaNueva.Nombre" class="form-control" />
+                        </div>
+                        <div class="d-flex justify-content-between align-content-center w-100 h-auto">
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                            <button @onclick="Cerrar" class="btn btn-danger">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+
+    @if (ShowAlert)
+    {
+        <div class="alert alert-@AlertType alert-dismissible fade show" role="alert">
+            @AlertMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (showNoneCategorias)
+    {
+        <div class="card">
+            <div class="card-content">
+                <h3>No hay categorias disponibles</h3>
+            </div>
+        </div>
+    }
+}
+
+@code {
+    private bool isCreating = false;
+    private bool showNoneCategorias = false;
+    private bool ShowAlert;
+    private string AlertType = "success";
+    private string AlertMessage = "";
+    private List<Categoria> categorias;
+    private bool isLoading = true;
+
+    private async Task ShowSuccessAlert()
+    {
+        ShowAlert = true;
+        AlertType = "success";
+        AlertMessage = "Operación completada con éxito.";
+        StateHasChanged(); // Refrescar la interfaz
+        await Task.Delay(2000);
+        ShowAlert = false;
+        StateHasChanged(); // Refrescar de nuevo
+    }
+
+    private async Task ShowErrorAlert()
+    {
+        ShowAlert = true;
+        AlertType = "danger";
+        AlertMessage = "Ocurrió un error en la operación.";
+        StateHasChanged(); // Refrescar la interfaz
+        await Task.Delay(2000);
+        ShowAlert = false;
+        StateHasChanged(); // Refrescar la interfaz
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            isLoading = true;
+            categorias = await CategoriasService.ObtenerCategorias();
+
+            if (categorias != null && categorias.Count == 0)
+            {
+                showNoneCategorias = true;
+            }
+        }
+        catch (Exception ex)
+        {
+            categorias = null; // Indica que ocurrió un error
+            ShowErrorAlert(); // Muestra una alerta de error
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private bool isEditing = false;
+    private Categoria categoriaToEdit = new Categoria();
+    private Categoria categoriaNueva = new Categoria()
+        {
+            UsuarioId = 4
+        };
+
+    // Método para manejar la edición de la categoría
+    private void EditarCategoria(int index)
+    {
+        var categoriaAEditar = categorias[index];
+        categoriaToEdit = categoriaAEditar;  // Cargamos la categoría a editar
+        isEditing = true;  // Activamos el modo de edición
+    }
+
+    // Método para guardar los cambios realizados
+    private async Task SaveChanges()
+    {
+        await CategoriasService.ActualizarCategoria(categoriaToEdit);
+
+        // Desactivar el modo de edición y refrescar la lista de categorías
+        isEditing = false;
+        ShowSuccessAlert();
+        isLoading = true;
+        categorias = await CategoriasService.ObtenerCategorias();//Refrescar la lista de categorias
+        isLoading = false;
+
+        showNoneCategorias = categorias.Count == 0; // Actualiza dinámicamente
+    }
+
+    private void Cerrar()
+    {
+        isEditing = false;
+        isCreating = false;
+        categoriaNueva = new Categoria { UsuarioId = 4 }; // Reinicia los valores
+    }
+    private void showModalCreate()
+    {
+        isCreating = true;
+    }
+
+    private async Task EliminarCategoria(int index)
+    {
+        var categoriaAEliminar = categorias[index];
+        await CategoriasService.EliminarCategoria(categoriaAEliminar.Id);
+        isLoading = true;
+        categorias = await CategoriasService.ObtenerCategorias();//Refrescar la lista de categorias
+        isLoading = false;
+
+    }
+
+    private async Task CargarCategoria()
+    {
+        isCreating = true;
+        if (categoriaToEdit.Nombre != "")
+        {
+            await CategoriasService.AgregarCategoria(categoriaNueva);
+            isCreating = false;
+            ShowSuccessAlert();
+            isLoading = true;
+            categorias = await CategoriasService.ObtenerCategorias();
+            isLoading = false;
+        }
+        else
+        {
+            isCreating = false;
+            ShowErrorAlert();
+        }
+    }
+}

@@ -1,0 +1,36 @@
+﻿@inject NavigationManager NavigationManager
+<div class="container">
+    <ul>
+        <li><a href="/perfil">Mi perfil</a></li>
+        <li><a href="/historial">Historial</a></li>
+        <li><a href="/ajustes">Ajustes</a></li>
+        <li><a href="/cerrar-sesion">Cerrar Sesión</a></li>
+    </ul>
+</div>
+
+@code {
+    private string FadeClass = "fade-in";
+
+    protected override void OnInitialized()
+    {
+        NavigationManager.LocationChanged += OnLocationChanged;
+    }
+
+    private void OnLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+        FadeClass = "fade-out";
+        StateHasChanged();
+
+        // Esperar la animación antes de cambiar a fade-in
+        _ = Task.Delay(500).ContinueWith(_ =>
+        {
+            FadeClass = "fade-in";
+            InvokeAsync(StateHasChanged);
+        });
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= OnLocationChanged;
+    }
+}

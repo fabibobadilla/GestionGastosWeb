@@ -1,0 +1,232 @@
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0; /* Elimina márgenes */
+    height: 100%; /* Asegura que el body ocupe toda la pantalla */
+    overflow: hidden; /* Evita scroll mientras carga */
+}
+
+html, body, #app {
+    height: 100%;
+    width: 100%; /* Asegura que todos los contenedores padres tomen toda la pantalla */
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed; /* Fija la posición en la pantalla */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Ocupa todo el ancho de la pantalla */
+    height: 100vh; /* Ocupa todo el alto de la pantalla */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+    z-index: 9999; /* Se asegura de estar al frente */
+}
+
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+    .lds-ellipsis div {
+        position: absolute;
+        top: 33.33333px;
+        width: 13.33333px;
+        height: 13.33333px;
+        border-radius: 50%;
+        background: currentColor;
+        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
+
+        .lds-ellipsis div:nth-child(1) {
+            left: 8px;
+            animation: lds-ellipsis1 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(2) {
+            left: 8px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(3) {
+            left: 32px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(4) {
+            left: 56px;
+            animation: lds-ellipsis3 0.6s infinite;
+        }
+
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(24px, 0);
+    }
+}
+
+.poppins-thin {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.poppins-extralight {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+.poppins-light {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.poppins-medium {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.poppins-semibold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.poppins-bold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.poppins-extrabold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+}
+
+.poppins-black {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+.poppins-thin-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+}
+
+.poppins-extralight-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: italic;
+}
+
+.poppins-light-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.poppins-regular-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.poppins-medium-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.poppins-semibold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.poppins-bold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.poppins-extrabold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-style: italic;
+}
+
+.poppins-black-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+}
+
+/* Animación de fade-in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animación de fade-out */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/* Clase para aplicar fade-in */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Clase para aplicar fade-out */
+.fade-out {
+    animation: fadeOut 0.5s ease-in-out;
+}

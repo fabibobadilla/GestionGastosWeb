@@ -1,0 +1,20 @@
+.container[b-71nseehv3n] {
+    height: 100%;
+}
+
+    .container ul li[b-71nseehv3n] {
+        list-style: none !important;
+        color: black !important;
+        font-weight: bolder;
+        transition: .3s ease-in-out;
+    }
+
+        .container ul li:hover[b-71nseehv3n] {
+            margin-left: 5px !important;
+            color: #b7b7b7 !important;
+        }
+
+        .container ul li a[b-71nseehv3n] {
+            text-decoration: none !important;
+            color: black !important;
+        }
