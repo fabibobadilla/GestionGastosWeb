@@ -17,8 +17,8 @@
             </ul>
         </div>
         <div class="nav-right col-4">
-            <NavLink href="/ajustes" class="nav-link" active-class="active">Ajustes</NavLink>
-            <NavLink href="/micuenta" class="nav-link" active-class="active">Mi Cuenta</NavLink>
+            <li><a href="/ajustes" class="nav-link" active-class="active">Ajustes</a></li>
+            <li><a href="/micuenta" class="nav-link" active-class="active">Mi Cuenta</a></li>
             <img src="#" alt="Perfil" class="img-cuenta" />
         </div>
     </nav>
@@ -32,13 +32,15 @@
             </div>
             <GestionGastosWeb.Widgets.NavLeft></GestionGastosWeb.Widgets.NavLeft>
         </div>
-        <div class="main-container body">
+        <div class="main-container">
             @Body
         </div>
     </div>
 
     <!-- Footer -->
-    <Footer />
+    <div class="w-100">
+        <Footer />
+    </div>
 </div>
 
 
@@ -57,30 +59,5 @@
         show = !show;
     }
 
-
-    // private string FadeClass = "fade-in";
-
-    // protected override void OnInitialized()
-    // {
-    //     NavigationManager.LocationChanged += OnLocationChanged;
-    // }
-
-    // private void OnLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
-    // {
-    //     FadeClass = "fade-out";
-    //     StateHasChanged();
-
-    //     // Esperar la animación antes de cambiar a fade-in
-    //     _ = Task.Delay(500).ContinueWith(_ =>
-    //     {
-    //         FadeClass = "fade-in";
-    //         InvokeAsync(StateHasChanged);
-    //     });
-    // }
-
-    // public void Dispose()
-    // {
-    //     NavigationManager.LocationChanged -= OnLocationChanged;
-    // }
 }
 

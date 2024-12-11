@@ -20,9 +20,29 @@
     padding: 10px;
 }
 
+.card.shadow-green[b-pups6hrtd0] {
+    box-shadow: 0 0 10px #1a9d00 !important;
+}
+
+.card.shadow-red[b-pups6hrtd0] {
+    box-shadow: 0 0 10px #930404 !important;
+}
+
 .card-body[b-pups6hrtd0] {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+}
+
+.loading[b-pups6hrtd0] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #00000033;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }

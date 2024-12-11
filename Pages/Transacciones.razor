@@ -11,7 +11,7 @@
 </div>
 <div class="header-transacciones">
     <button @onclick="abrirModal" class="btn-success btn">Cargar transacción</button>
-    <GestionGastosWeb.Widgets.ExcelReport ListaTransacciones="gastos"></GestionGastosWeb.Widgets.ExcelReport>
+    <GestionGastosWeb.Widgets.ExcelReport ListaTransacciones="gastos" ListaCategorias="categorias"></GestionGastosWeb.Widgets.ExcelReport>
 </div>
 
 @if (isLoading)
@@ -43,7 +43,7 @@ else
                 @foreach (var gasto in (isAscendingOrder ? gastos.OrderBy(g => g.FechaCarga) : gastos.OrderByDescending(g => g.FechaCarga)).Select((transaccion, index) => new { transaccion, index }))
                 {
                     <tr class="fila-transaccion">
-                        <td>@gasto.transaccion.Monto</td>
+                        <td>$@gasto.transaccion.Monto</td>
                         <td>@gasto.transaccion.Descripcion</td>
                         <td>@(categorias.FirstOrDefault(c => c.Id == gasto.transaccion.CategoriaId)?.Nombre ?? "Sin categoría")</td>
                         <td>@gasto.transaccion.FechaCarga</td>
@@ -71,8 +71,8 @@ else
             </tbody>
         </table>
     </div>
-}
 
+}
 <!-- Modal -->
 @if (modalOpen)
 {
@@ -241,6 +241,8 @@ nuevoGasto.CategoriaId <= 0)
     <div class="modal show d-block confirmation" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
+                <span class="material-icons" style="color: #e94141; font-size: 50px;">info</span>
+
                 <div class="modal-header">
                     <h5 class="modal-title">¿Está seguro que desea eliminar la transacción?</h5>
                 </div>
@@ -275,8 +277,8 @@ nuevoGasto.CategoriaId <= 0)
     protected override async Task OnInitializedAsync()
     {
         // Cargar las categorías desde el servicio.
-        categorias = await CategoriaService.ObtenerCategorias();
         isLoading = true;
+        categorias = await CategoriaService.ObtenerCategorias();
         gastos = await GastoService.ObtenerGastos();
         isLoading = false;
     }
@@ -333,21 +335,21 @@ nuevoGasto.CategoriaId <= 0)
             try
             {
                 // Guardar el gasto en el backend
+                isLoading = true;
+                abrirModal();
                 await GastoService.AgregarGasto(nuevoGasto);
-
                 // Resetear el formulario y cerrar el modal
                 nuevoGasto = new Gasto
                     {
                         FechaCarga = DateTime.Now,
                         UsuarioId = 4 // Puedes ajustar esto dinámicamente
                     };
-                abrirModal();
                 // <GestionGastosWeb.Widgets.Snackbar AlertMessage="Ocurrió un error en la operación." AlertType="danger" />
 
                 // Recargar la lista de gastos
-                isLoading = true;
                 gastos = await GastoService.ObtenerGastos();
                 isLoading = false;
+                await ShowSuccessAlert();
             }
             catch (Exception ex)
             {
@@ -375,12 +377,12 @@ nuevoGasto.CategoriaId <= 0)
 
     private async Task SaveChanges()
     {
-        await GastoService.ActualizarGasto(transaccionToEdit);
-        isEditing = false;
-        ShowSuccessAlert();
         isLoading = true;
+        isEditing = false;
+        await GastoService.ActualizarGasto(transaccionToEdit);
         await GastoService.ObtenerGastos();
         isLoading = false;
+        await ShowSuccessAlert();
     }
 
     public void EliminarTransaccion(int index)
@@ -394,15 +396,13 @@ nuevoGasto.CategoriaId <= 0)
     public async Task Eliminar()
     {
         var transaccionAEliminar = gastos.FirstOrDefault(g => g.Id == IdTransaccion);
-        await GastoService.EliminarGasto(IdTransaccion);
         isConfirmation = false;
-        isLoading = true;
         if (transaccionAEliminar != null)
         {
             gastos.Remove(transaccionAEliminar);  // Remueve el gasto de la lista
         }
-        isLoading = false;
-        ShowSuccessAlert();
+        await GastoService.EliminarGasto(IdTransaccion);
+        await ShowSuccessAlert();
     }
 
 

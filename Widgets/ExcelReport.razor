@@ -1,13 +1,25 @@
 ﻿@inject ExcelReportService ExcelService
 @inject IJSRuntime JSRuntime
+@inject UsuariosService UsuariosService
 
 <div class="download-excel">
-    <button @onclick="DownloadExcel">Descargar Reporte</button>
+    <button @onclick="DownloadExcel" class="btn btn-secondary">Descargar Reporte</button>
 </div>
 
 @code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        ListaUsuarios = await UsuariosService.ObtenerUsuarios();
+    }
+
     [Parameter]
     public List<Gasto>? ListaTransacciones { get; set; }
+
+    public List<Usuario>? ListaUsuarios { get; set; }
+
+    [Parameter]
+    public List<Categoria>? ListaCategorias { get; set; }
 
     private async Task DownloadExcel()
     {
@@ -15,7 +27,7 @@
         {
 
             // Generar el archivo Excel
-            var excelData = await ExcelService.GenerateExcelReportAsync(ListaTransacciones);
+            var excelData = await ExcelService.GenerateExcelReportAsync(ListaTransacciones, ListaUsuarios, ListaCategorias);
 
             // Descargar el archivo en el navegador
             await JSRuntime.InvokeVoidAsync("downloadFile", "reporte.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", excelData);

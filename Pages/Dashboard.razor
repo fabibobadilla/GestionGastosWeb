@@ -3,9 +3,9 @@
 
 @using GestionGastosWeb.Pages
 @inject CategoriasService CategoriasService
-@inject IngresosService IngresosService
+@inject GastosService GastosService
 
-<div class="text-center" style="padding 15px;">
+<div class="text-center" style="padding: 15px;">
     <h3>Resumen de saldo</h3>
 </div>
 
@@ -18,50 +18,52 @@
 else
 {
     <div class="header-dashboard row">
-        <div style="display: flex; justify-content: start; align-items: center;">
-            <button @onclick="CargarIngreso" class="btn btn-success">Cargar ingreso</button>
-        </div>
     </div>
     <div class="dashboard">
-        <div class="card" style="width: 18rem; background-color: white;">
+        <div class="card @(saldo > 0 ? "shadow-green": saldo < 0 ? "shadow-red" : "" )" style="width: 18rem; background-color: white;">
             <div class="card-body">
                 <h5 class="card-title">Saldo</h5>
-                <h1 class="@GetMontoColor()">$@ingreso.Monto.ToString("F2")</h1>
+                <h1 class="@GetMontoColor()">$@saldo.ToString("F2")</h1>
                 <a href="/transacciones" class="btn btn-primary">Ver transacciones</a>
             </div>
         </div>
     </div>
 }
+
 @if (IsCreating)
 {
     <div class="modal show d-block" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Añadir ingreso</h5>
+                    <h5 class="modal-title">Añadir Transacción</h5>
                     <button type="button" class="btn-close" @onclick="abrirModal"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- Formulario para añadir el gasto -->
                     <form>
-
+                        <!-- Campo: Tipo -->
+                        <div class="mb-3">
+                            <label for="tipo" class="form-label">Tipo</label>
+                            <select id="tipo" class="form-control" @bind="nuevoGasto.Tipo">
+                                <option value="Ingreso">Ingreso</option>
+                                <option value="Gasto">Gasto</option>
+                            </select>
+                        </div>
                         <!-- Campo: Monto -->
                         <div class="mb-3">
                             <label for="monto" class="form-label">Monto</label>
-                            <input type="number" id="monto" class="form-control" @bind="nuevoIngreso.Monto" />
+                            <input type="number" id="monto" class="form-control" @bind="nuevoGasto.Monto" />
                         </div>
                         <!-- Campo: Descripción -->
-
                         <div class="mb-3">
                             <label for="descripcion" class="form-label">Descripción</label>
-                            <input type="text" id="descripcion" class="form-control" @bind="nuevoIngreso.Descripcion" />
+                            <input type="text" id="descripcion" class="form-control" @bind="nuevoGasto.Descripcion" />
                         </div>
-
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" @onclick="abrirModal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" @onclick="GuardarIngreso">Guardar</button>
+                    <button type="button" class="btn btn-primary" @onclick="GuardarGasto">Guardar</button>
                 </div>
             </div>
         </div>
@@ -77,83 +79,73 @@ else
 }
 
 @code {
+    private bool isLoading = false;
     private bool IsCreating = false;
     private bool ShowAlert;
     private string AlertType = "success";
     private string AlertMessage = "";
+    private decimal saldo = 0;
 
-    private async Task ShowSuccessAlert()
-    {
-        ShowAlert = true;
-        AlertType = "success";
-        AlertMessage = "Operación completada con éxito.";
-        await Task.Delay(2000);
-        ShowAlert = false;
-    }
+    private Gasto nuevoGasto = new Gasto
+        {
+            UsuarioId = 4,
+            FechaCarga = DateTime.Now
+        };
 
-    private async Task ShowErrorAlert()
-    {
-        ShowAlert = true;
-        AlertType = "danger";
-        AlertMessage = "Ocurrió un error en la operación.";
-        await Task.Delay(2000);
-        ShowAlert = false;
-    }
-}
-
-
-@code {
-    private bool isLoading = false;
-    private Ingreso nuevoIngreso = new Ingreso();
-    private Ingreso ingreso = new Ingreso();
-    private List<Ingreso>? ingresos;
-    private List<Categoria>? categorias;
+    private List<Gasto>? gastos;
 
     protected override async Task OnInitializedAsync()
     {
-        ingresos = await IngresosService.ObtenerIngresos();
+        isLoading = true;
 
-        // Calcular la suma de los ingresos
-        if (ingresos != null)
+        try
         {
-            ingreso.Monto = ingresos.Sum(ing => ing.Monto);
-        }
+            gastos = await GastosService.ObtenerGastos();
 
+            if (gastos != null)
+            {
+                saldo = gastos.Sum(g => g.Tipo == "INGRESO" ? Convert.ToDecimal(g.Monto) : -Convert.ToDecimal(g.Monto));
+            }
+        }
+        finally
+        {
+            isLoading = false;
+        }
     }
+
     private string GetMontoColor()
     {
-        // Retornar la clase según el valor del monto
-        if (ingreso.Monto > 0)
+        if (saldo > 0)
             return "text-success"; // Verde
-        if (ingreso.Monto < 0)
+        if (saldo < 0)
             return "text-danger"; // Rojo
         return "text-dark"; // Negro (default)
     }
 
-    public void CargarIngreso()
+    public void CargarGasto()
     {
         IsCreating = true;
-
     }
 
-    public async Task GuardarIngreso()
+    public async Task GuardarGasto()
     {
         try
         {
-            // await IngresosService.AgregarIngreso(nuevoIngreso);
-            var response = await IngresosService.AgregarIngreso(nuevoIngreso);
+            var response = await GastosService.AgregarGasto(nuevoGasto);
 
-            if (response == "Ingreso agregado exitosamente")
+            if (response == "Transacción agregada exitosamente")
             {
                 AlertType = "success";
-                AlertMessage = "Ingreso agregado exitosamente.";
-                // Aquí puedes realizar lógica adicional como limpiar el formulario
-                nuevoIngreso = new Ingreso();
+                AlertMessage = "Transacción agregada exitosamente.";
+                nuevoGasto = new Gasto { UsuarioId = 4, FechaCarga = DateTime.Now };
+
+                gastos = await GastosService.ObtenerGastos();
+                saldo = gastos.Sum(g => g.Tipo == "INGRESO" ? Convert.ToDecimal(g.Monto) : -Convert.ToDecimal(g.Monto));
             }
             else
             {
                 AlertType = "danger";
-                AlertMessage = $"Error al agregar ingreso: {response}";
+                AlertMessage = $"Error al agregar la transacción: {response}";
             }
         }
         catch (Exception ex)
@@ -164,26 +156,19 @@ else
         finally
         {
             IsCreating = false;
-            ShowSuccessAlert();
-
-            // Opcional: Ocultar alerta después de un tiempo
-            await Task.Delay(3000);
-            ShowAlert = false;
+            await MostrarAlerta();
         }
+    }
+
+    private async Task MostrarAlerta()
+    {
+        ShowAlert = true;
+        await Task.Delay(2000);
+        ShowAlert = false;
     }
 
     public void abrirModal()
     {
         IsCreating = !IsCreating;
-
-        if (IsCreating)
-        {
-            ingreso = new Ingreso
-                {
-                    UsuarioId = 4,
-                    FechaIngreso = DateTime.Now
-
-                };
-        }
     }
 }

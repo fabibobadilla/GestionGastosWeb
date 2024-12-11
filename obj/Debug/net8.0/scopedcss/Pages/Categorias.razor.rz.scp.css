@@ -27,7 +27,7 @@
     gap: 10px;
     padding: 10px;
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 .card[b-bid4tchvs0] {
@@ -39,6 +39,7 @@
 
     .card:hover[b-bid4tchvs0] {
         box-shadow: 0px 0px 10px #000000ed !important;
+        transform: translateY(1px);
     }
 
 .modal[b-bid4tchvs0] {
@@ -67,8 +68,12 @@
 }
 
 .loading[b-bid4tchvs0] {
-    width: 100%;
-    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #00000033;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;

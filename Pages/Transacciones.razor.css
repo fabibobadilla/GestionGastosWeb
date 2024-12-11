@@ -26,14 +26,20 @@
 
 .header-transacciones {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 1.5rem;
 }
 
 .table-container {
     width: 95% !important;
     height: auto;
     padding: 10px !important;
+}
+
+.fila-transaccion td {
 }
 
 .fila-transaccion:hover {
@@ -67,3 +73,16 @@
         background-color: #bdbdbd;
         box-shadow: 0 0 0px #548bb0;
     }
+
+
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #00000033;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

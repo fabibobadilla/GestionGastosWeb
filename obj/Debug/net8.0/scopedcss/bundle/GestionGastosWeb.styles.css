@@ -20,18 +20,25 @@
     }
 
 .nav-center ul[b-qjep78vr78] {
-    height: 80%;
+    height: 100%;
     display: flex;
     justify-content: start;
     gap: 20px;
-    align-items: end;
+    align-items: center;
 }
 
-    .nav-center ul li[b-qjep78vr78] {
-        list-style: none;
-        color: white;
-    }
+.active li[b-qjep78vr78] {
+    margin-bottom: 5px;
+}
 
+.nav-center a[b-qjep78vr78] {
+    color: #fff;
+    text-decoration: none;
+}
+
+    .nav-center a:hover[b-qjep78vr78] {
+        color: #110f0f;
+    }
 
 
 .nav-right[b-qjep78vr78] {
@@ -52,10 +59,6 @@
     border-radius: 3rem;
 }
 
-.active[b-qjep78vr78] {
-    text-shadow: 0 0 20px grey;
-}
-
 .nav-bar[b-qjep78vr78] {
     background-color: #000;
 }
@@ -64,22 +67,22 @@ html[b-qjep78vr78], body[b-qjep78vr78] {
     margin: 0;
     padding: 0;
     height: 100%;
-    width: 100vw;
+    width: 100%;
 }
 
 .main-layout[b-qjep78vr78] {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
     width: 100%;
-    background-color: wheat;
+    background-color: #f3f3f3;
     padding: 0 !important;
 }
 
 .body[b-qjep78vr78] {
     flex: 1;
-    overflow-y: auto; /* Si el contenido es largo, aparecerá un scroll vertical */
-    background-color: #f4f4f4; /* Color de fondo de la página */
+    overflow-y: scroll; /* Si el contenido es largo, aparecerá un scroll vertical */
+    background-color: #f3f3f3; /* Color de fondo de la página */
 }
 
 
@@ -88,23 +91,33 @@ ul[b-qjep78vr78] {
     padding: 0;
 }
 
-li[b-qjep78vr78] {
-    margin: 10px 0;
-}
 
 .nav-link[b-qjep78vr78] {
     text-decoration: none;
     color: #333;
     font-size: 16px;
+    border-radius: 5px 5px 5px 5px;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Animación suave */
 }
 
     .nav-link.active[b-qjep78vr78] {
-        color: #007BFF; /* Color de enlace activo */
+        color: #110f0f; /* Color de enlace activo */
         font-weight: bold;
+        margin-bottom: -10px;
+        background-color: #f3f3f3;
+        border-radius: 5px 5px 0 0;
+        padding-bottom: 10px;
+        transform: translateY(5px); /* Mueve el enlace hacia abajo */
     }
 
+        .nav-link.active a[b-qjep78vr78] {
+            color: black;
+        }
+
     .nav-link:hover[b-qjep78vr78] {
-        color: #0056b3;
+        color: #110f0f;
+        border-radius: 5px 5px 5px 5px;
+        background-color: #f3f3f3;
     }
 
 
@@ -137,13 +150,15 @@ html[b-qjep78vr78], body[b-qjep78vr78] {
     padding: 0;
     height: 100%;
     width: 100%;
+    background-color: #f3f3f3;
 }
 
 .main-layout[b-qjep78vr78] {
     display: flex;
     flex-direction: column;
-    width: 100vw;
-    height: 100vh; /* Ocupar toda la altura de la ventana */
+    background-color: #f3f3f3;
+    width: 100%;
+    height: 100%; /* Ocupar toda la altura de la ventana */
 }
 
 .container[b-qjep78vr78] {
@@ -152,24 +167,21 @@ html[b-qjep78vr78], body[b-qjep78vr78] {
     flex-direction: row;
     margin: 0;
     padding: 0;
+    background-color: #f3f3f3;
 }
 
 .main-container[b-qjep78vr78] {
-    flex: 1; /* Ocupar todo el ancho restante */
+    /* Ocupar todo el ancho restante */
     display: flex;
     flex-direction: column; /* Asegura que las columnas se alineen horizontalmente */
+    background-color: #f3f3f3;
 }
 
-
-.body[b-qjep78vr78] {
-    flex: 1; /* Ocupar el espacio restante horizontal */
-    overflow-y: auto; /* Permite desplazamiento vertical si el contenido es muy largo */
-    background-color: #f4f4f4; /* Color de fondo para verificar visualmente */
-}
 
 .nav-bar[b-qjep78vr78] {
     height: auto;
     background-color: #000;
+    padding: 0;
 }
 
 .left-bar[b-qjep78vr78] {
@@ -203,8 +215,21 @@ html[b-qjep78vr78], body[b-qjep78vr78] {
 
 
 .main-container[b-qjep78vr78] {
-    animation: .3s ease-in-out;
+    transition: .3s ease-in-out;
 }
+
+.nav-right li[b-qjep78vr78] {
+    list-style: none;
+}
+
+.nav-right a[b-qjep78vr78] {
+    color: #fff;
+    text-decoration: none !important;
+}
+
+    .nav-right a:hover[b-qjep78vr78] {
+        color: #110f0f;
+    }
 /* /Pages/Categorias.razor.rz.scp.css */
 .header-categorias[b-bid4tchvs0] {
     display: flex;
@@ -235,7 +260,7 @@ html[b-qjep78vr78], body[b-qjep78vr78] {
     gap: 10px;
     padding: 10px;
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 .card[b-bid4tchvs0] {
@@ -247,6 +272,7 @@ html[b-qjep78vr78], body[b-qjep78vr78] {
 
     .card:hover[b-bid4tchvs0] {
         box-shadow: 0px 0px 10px #000000ed !important;
+        transform: translateY(1px);
     }
 
 .modal[b-bid4tchvs0] {
@@ -275,8 +301,12 @@ html[b-qjep78vr78], body[b-qjep78vr78] {
 }
 
 .loading[b-bid4tchvs0] {
-    width: 100%;
-    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #00000033;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -313,10 +343,30 @@ html[b-qjep78vr78], body[b-qjep78vr78] {
     padding: 10px;
 }
 
+.card.shadow-green[b-pups6hrtd0] {
+    box-shadow: 0 0 10px #1a9d00 !important;
+}
+
+.card.shadow-red[b-pups6hrtd0] {
+    box-shadow: 0 0 10px #930404 !important;
+}
+
 .card-body[b-pups6hrtd0] {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+}
+
+.loading[b-pups6hrtd0] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #00000033;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 /* /Pages/Footer.razor.rz.scp.css */
@@ -527,14 +577,20 @@ html[b-qjep78vr78], body[b-qjep78vr78] {
 
 .header-transacciones[b-sfyyx6jpdl] {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 1.5rem;
 }
 
 .table-container[b-sfyyx6jpdl] {
     width: 95% !important;
     height: auto;
     padding: 10px !important;
+}
+
+.fila-transaccion td[b-sfyyx6jpdl] {
 }
 
 .fila-transaccion:hover[b-sfyyx6jpdl] {
@@ -568,6 +624,19 @@ html[b-qjep78vr78], body[b-qjep78vr78] {
         background-color: #bdbdbd;
         box-shadow: 0 0 0px #548bb0;
     }
+
+
+.loading[b-sfyyx6jpdl] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #00000033;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* /Widgets/ExcelReport.razor.rz.scp.css */
 .download-excel[b-mz71fynwr2] {
 }

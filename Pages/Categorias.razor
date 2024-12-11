@@ -91,15 +91,39 @@ else
             </div>
         </div>
     }
+
+    @if (isConfirmation)
+    {
+        <div class="modal show d-block confirmation" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <span class="material-icons" style="color: #e94141; font-size: 50px;">info</span>
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">¿Está seguro que desea eliminar la transacción?</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Esta acción no se puede deshacer.</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" @onclick="ConfirmacionEliminar">Eliminar</button>
+                        <button type="button" class="btn btn-secondary" @onclick="Cerrar">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 }
 
 @code {
+    private bool isConfirmation = false;
     private bool isCreating = false;
     private bool showNoneCategorias = false;
     private bool ShowAlert;
     private string AlertType = "success";
     private string AlertMessage = "";
-    private List<Categoria> categorias;
+    private List<Categoria>? categorias;
     private bool isLoading = true;
 
     private async Task ShowSuccessAlert()
@@ -147,6 +171,7 @@ else
         }
     }
 
+    private Categoria CategoriaAEliminar;
     private bool isEditing = false;
     private Categoria categoriaToEdit = new Categoria();
     private Categoria categoriaNueva = new Categoria()
@@ -188,13 +213,22 @@ else
         isCreating = true;
     }
 
-    private async Task EliminarCategoria(int index)
+    public void EliminarCategoria(int index)
     {
-        var categoriaAEliminar = categorias[index];
-        await CategoriasService.EliminarCategoria(categoriaAEliminar.Id);
-        isLoading = true;
-        categorias = await CategoriasService.ObtenerCategorias();//Refrescar la lista de categorias
-        isLoading = false;
+        isConfirmation = true;
+        CategoriaAEliminar = categorias[index];
+
+    }
+
+    private async Task ConfirmacionEliminar()
+    {
+        isConfirmation = false;
+        if (CategoriaAEliminar != null)
+        {
+            categorias.Remove(CategoriaAEliminar);  // Remuevev la categoria de la lista
+        }
+        await CategoriasService.EliminarCategoria(CategoriaAEliminar.Id);
+        await ShowSuccessAlert();
 
     }
 
@@ -204,16 +238,16 @@ else
         if (categoriaToEdit.Nombre != "")
         {
             await CategoriasService.AgregarCategoria(categoriaNueva);
-            isCreating = false;
-            ShowSuccessAlert();
             isLoading = true;
+            isCreating = false;
             categorias = await CategoriasService.ObtenerCategorias();
             isLoading = false;
+            await ShowSuccessAlert();
         }
         else
         {
             isCreating = false;
-            ShowErrorAlert();
+            await ShowErrorAlert();
         }
     }
 }

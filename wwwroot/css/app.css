@@ -3,7 +3,9 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0; /* Elimina márgenes */
     height: 100%; /* Asegura que el body ocupe toda la pantalla */
-    overflow: hidden; /* Evita scroll mientras carga */
+    width: 100%;
+    overflow-y: scroll; /* Evita scroll mientras carga */
+    overflow-x: hidden;
 }
 
 html, body, #app {

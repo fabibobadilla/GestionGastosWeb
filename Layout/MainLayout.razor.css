@@ -12,18 +12,25 @@
     }
 
 .nav-center ul {
-    height: 80%;
+    height: 100%;
     display: flex;
     justify-content: start;
     gap: 20px;
-    align-items: end;
+    align-items: center;
 }
 
-    .nav-center ul li {
-        list-style: none;
-        color: white;
-    }
+.active li {
+    margin-bottom: 5px;
+}
 
+.nav-center a {
+    color: #fff;
+    text-decoration: none;
+}
+
+    .nav-center a:hover {
+        color: #110f0f;
+    }
 
 
 .nav-right {
@@ -44,10 +51,6 @@
     border-radius: 3rem;
 }
 
-.active {
-    text-shadow: 0 0 20px grey;
-}
-
 .nav-bar {
     background-color: #000;
 }
@@ -56,22 +59,22 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    width: 100vw;
+    width: 100%;
 }
 
 .main-layout {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
     width: 100%;
-    background-color: wheat;
+    background-color: #f3f3f3;
     padding: 0 !important;
 }
 
 .body {
     flex: 1;
-    overflow-y: auto; /* Si el contenido es largo, aparecerá un scroll vertical */
-    background-color: #f4f4f4; /* Color de fondo de la página */
+    overflow-y: scroll; /* Si el contenido es largo, aparecerá un scroll vertical */
+    background-color: #f3f3f3; /* Color de fondo de la página */
 }
 
 
@@ -80,23 +83,33 @@ ul {
     padding: 0;
 }
 
-li {
-    margin: 10px 0;
-}
 
 .nav-link {
     text-decoration: none;
     color: #333;
     font-size: 16px;
+    border-radius: 5px 5px 5px 5px;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Animación suave */
 }
 
     .nav-link.active {
-        color: #007BFF; /* Color de enlace activo */
+        color: #110f0f; /* Color de enlace activo */
         font-weight: bold;
+        margin-bottom: -10px;
+        background-color: #f3f3f3;
+        border-radius: 5px 5px 0 0;
+        padding-bottom: 10px;
+        transform: translateY(5px); /* Mueve el enlace hacia abajo */
     }
 
+        .nav-link.active a {
+            color: black;
+        }
+
     .nav-link:hover {
-        color: #0056b3;
+        color: #110f0f;
+        border-radius: 5px 5px 5px 5px;
+        background-color: #f3f3f3;
     }
 
 
@@ -129,13 +142,15 @@ html, body {
     padding: 0;
     height: 100%;
     width: 100%;
+    background-color: #f3f3f3;
 }
 
 .main-layout {
     display: flex;
     flex-direction: column;
-    width: 100vw;
-    height: 100vh; /* Ocupar toda la altura de la ventana */
+    background-color: #f3f3f3;
+    width: 100%;
+    height: 100%; /* Ocupar toda la altura de la ventana */
 }
 
 .container {
@@ -144,24 +159,21 @@ html, body {
     flex-direction: row;
     margin: 0;
     padding: 0;
+    background-color: #f3f3f3;
 }
 
 .main-container {
-    flex: 1; /* Ocupar todo el ancho restante */
+    /* Ocupar todo el ancho restante */
     display: flex;
     flex-direction: column; /* Asegura que las columnas se alineen horizontalmente */
+    background-color: #f3f3f3;
 }
 
-
-.body {
-    flex: 1; /* Ocupar el espacio restante horizontal */
-    overflow-y: auto; /* Permite desplazamiento vertical si el contenido es muy largo */
-    background-color: #f4f4f4; /* Color de fondo para verificar visualmente */
-}
 
 .nav-bar {
     height: auto;
     background-color: #000;
+    padding: 0;
 }
 
 .left-bar {
@@ -195,5 +207,18 @@ html, body {
 
 
 .main-container {
-    animation: .3s ease-in-out;
+    transition: .3s ease-in-out;
 }
+
+.nav-right li {
+    list-style: none;
+}
+
+.nav-right a {
+    color: #fff;
+    text-decoration: none !important;
+}
+
+    .nav-right a:hover {
+        color: #110f0f;
+    }
