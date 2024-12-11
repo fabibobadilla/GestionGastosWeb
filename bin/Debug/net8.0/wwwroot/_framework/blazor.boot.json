@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "GestionGastosWeb",
   "resources": {
-    "hash": "sha256-0g3tM8DKVpEqIbE+f9+dm45tCoAUZIGPKILGVuAjq1M=",
+    "hash": "sha256-TYC7mnW+fEYGWnZFYpjJSdWNtGnYP/CstIXlpbtgFC8=",
     "jsModuleNative": {
       "dotnet.native.8.0.5.6n4sp6rnbq.js": "sha256-boyHe+0RMZDkzBKGhsrnXPhPg3oZ6UqJnTUzngJPjNY="
     },
@@ -234,10 +234,10 @@
       "mscorlib.wasm": "sha256-XvLAB5IyfVSmj5aaGnPwgVFaaZz8jXmbN8WmeopiPBM=",
       "netstandard.wasm": "sha256-TbMssdnuTiKq1gjTPkpgROAuWN0uhvPnagvWR+wAgNs=",
       "System.Private.CoreLib.wasm": "sha256-sscg+Efk8ROPq+q4IVmhShzITuoOYvB8Bsc+Mp9vcSM=",
-      "GestionGastosWeb.wasm": "sha256-LG7HdfrKzFfacmDWH2M+/wZzw1RdDyW0ytEusjLFdAs="
+      "GestionGastosWeb.wasm": "sha256-ISRCHyzkyHW/bsQz9sWMbdUTvltSXYJmqT2Eqw1sH+g="
     },
     "pdb": {
-      "GestionGastosWeb.pdb": "sha256-s76fD+rca5XAmmVGDzPNQYOo++ExWOIEDebWBxT8EW8="
+      "GestionGastosWeb.pdb": "sha256-yeHxfxKmDv3oP0H+ZzldEWErFXgN4OHeahuavjrpeVo="
     }
   },
   "cacheBootResources": true,

@@ -3,34 +3,81 @@
 
 @using GestionGastosWeb.Pages
 @inject CategoriasService CategoriasService
+@inject IngresosService IngresosService
 
-<div class="dashboard">
-    <div class="card" style="width: 18rem; background-color: ;">
-        @* <img class="card-img-top" src="..." alt="Card image cap"> *@
-        @foreach (var categoria in categorias)
-        {
-            <div class="card-body">
-                <h5 class="card-title">@categoria.Nombre</h5>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        }
+<div class="text-center" style="padding 15px;">
+    <h3>Resumen de saldo</h3>
+</div>
+
+@if (isLoading)
+{
+    <div class="loading">
+        <GestionGastosWeb.Widgets.Loading></GestionGastosWeb.Widgets.Loading>
     </div>
-</div>
-
-<div>
-    @if (ShowAlert)
-    {
-        <div class="alert alert-@AlertType alert-dismissible fade show" role="alert">
-            @AlertMessage
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+}
+else
+{
+    <div class="header-dashboard row">
+        <div style="display: flex; justify-content: start; align-items: center;">
+            <button @onclick="CargarIngreso" class="btn btn-success">Cargar ingreso</button>
         </div>
-    }
+    </div>
+    <div class="dashboard">
+        <div class="card" style="width: 18rem; background-color: white;">
+            <div class="card-body">
+                <h5 class="card-title">Saldo</h5>
+                <h1 class="@GetMontoColor()">$@ingreso.Monto.ToString("F2")</h1>
+                <a href="/transacciones" class="btn btn-primary">Ver transacciones</a>
+            </div>
+        </div>
+    </div>
+}
+@if (IsCreating)
+{
+    <div class="modal show d-block" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Añadir ingreso</h5>
+                    <button type="button" class="btn-close" @onclick="abrirModal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulario para añadir el gasto -->
+                    <form>
 
-    <button class="btn btn-primary" @onclick="ShowSuccessAlert">Mostrar Alerta de Éxito</button>
-    <button class="btn btn-danger" @onclick="ShowErrorAlert">Mostrar Alerta de Error</button>
-</div>
+                        <!-- Campo: Monto -->
+                        <div class="mb-3">
+                            <label for="monto" class="form-label">Monto</label>
+                            <input type="number" id="monto" class="form-control" @bind="nuevoIngreso.Monto" />
+                        </div>
+                        <!-- Campo: Descripción -->
+
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <input type="text" id="descripcion" class="form-control" @bind="nuevoIngreso.Descripcion" />
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" @onclick="abrirModal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" @onclick="CargarIngreso">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (ShowAlert)
+{
+    <div class="alert alert-@AlertType alert-dismissible fade show" role="alert">
+        @AlertMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
 @code {
+    private bool IsCreating = false;
     private bool ShowAlert;
     private string AlertType = "success";
     private string AlertMessage = "";
@@ -56,17 +103,58 @@
 
 
 @code {
-
-    private List<Categoria> categorias;
+    private bool isLoading = false;
+    private Ingreso nuevoIngreso = new Ingreso();
+    private Ingreso ingreso = new Ingreso();
+    private List<Ingreso>? ingresos;
+    private List<Categoria>? categorias;
 
     protected override async Task OnInitializedAsync()
     {
-        categorias = await CategoriasService.ObtenerCategorias();
-        // Convertir la lista en una cadena separada por comas
+        ingresos = await IngresosService.ObtenerIngresos();
 
-        foreach (var categoria in categorias)
+        // Calcular la suma de los ingresos
+        if (ingresos != null)
         {
-            Console.WriteLine("categorias: " + categoria);
+            ingreso.Monto = ingresos.Sum(ing => ing.Monto);
+        }
+
+    }
+    private string GetMontoColor()
+    {
+        // Retornar la clase según el valor del monto
+        if (ingreso.Monto > 0)
+            return "text-success"; // Verde
+        if (ingreso.Monto < 0)
+            return "text-danger"; // Rojo
+        return "text-dark"; // Negro (default)
+    }
+
+    public void CargarIngreso()
+    {
+        IsCreating = true;
+
+    }
+
+    public async Task GuardarIngreso()
+    {
+        await IngresosService.AgregarIngreso(nuevoIngreso);
+        IsCreating = false;
+
+    }
+
+    public void abrirModal()
+    {
+        IsCreating = !IsCreating;
+
+        if (IsCreating)
+        {
+            ingreso = new Ingreso
+                {
+                    UsuarioId = 4,
+                    FechaIngreso = DateTime.Now
+
+                };
         }
     }
 }

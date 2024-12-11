@@ -26,6 +26,7 @@ ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 var configuration = builder.Configuration;
 //builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(configuration["ApiUrl"]) });
+//builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(configuration["ApiUrlLocal"]) });
 builder.Services.AddSyncfusionBlazor();
 
 builder.Services.AddScoped<AuthService>();
