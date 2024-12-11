@@ -109,7 +109,7 @@
       "url": "_framework\/Firebase.Auth.wasm"
     },
     {
-      "hash": "sha256-TEKG\/cNSoOZodwmzQZnJGfLLtlbGu\/LHNpdjgWHPUD4=",
+      "hash": "sha256-Zd+\/+farBXc\/sXiba+2xYtGis2fDTW\/Q7LRw8WFUFYI=",
       "url": "_framework\/GestionGastosShared.wasm"
     },
     {
@@ -969,15 +969,15 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-dR06klk\/IYrSclk3rOglKefUpi0FYO4DFCJS1EHDM2A=",
+      "hash": "sha256-N4bcWOx8D5CO9JpXh5sgjzQTXocTXtG2EU9DVRBzCN8=",
       "url": "_framework\/GestionGastosWeb.wasm"
     },
     {
-      "hash": "sha256-WTWflsgmx3SXoZSqRBwh0Y48dLxbiCHFMeou\/CN+DsM=",
+      "hash": "sha256-hw8pXKV95Z77Sjbh+f9Oae0QPzC3LF0NEUxZlNWYv4M=",
       "url": "_framework\/GestionGastosWeb.pdb"
     },
     {
-      "hash": "sha256-npzCoZ54Vq8odEGBpC3iQ4jSotO3HuVcMP4f4jG3BtI=",
+      "hash": "sha256-eN\/sL3Ea+UIxNJCHiSRUNqhiqVm8W7ijh+I6S09F5lU=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -1825,5 +1825,5 @@
       "url": "_content\/Blazored.Toast\/Blazored.Toast.bundle.scp.css"
     }
   ],
-  "version": "EigfJ0ja"
+  "version": "14plosx5"
 };

@@ -61,7 +61,7 @@ else
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" @onclick="abrirModal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" @onclick="CargarIngreso">Guardar</button>
+                    <button type="button" class="btn btn-primary" @onclick="GuardarIngreso">Guardar</button>
                 </div>
             </div>
         </div>
@@ -138,9 +138,38 @@ else
 
     public async Task GuardarIngreso()
     {
-        await IngresosService.AgregarIngreso(nuevoIngreso);
-        IsCreating = false;
+        try
+        {
+            // await IngresosService.AgregarIngreso(nuevoIngreso);
+            var response = await IngresosService.AgregarIngreso(nuevoIngreso);
 
+            if (response == "Ingreso agregado exitosamente")
+            {
+                AlertType = "success";
+                AlertMessage = "Ingreso agregado exitosamente.";
+                // Aquí puedes realizar lógica adicional como limpiar el formulario
+                nuevoIngreso = new Ingreso();
+            }
+            else
+            {
+                AlertType = "danger";
+                AlertMessage = $"Error al agregar ingreso: {response}";
+            }
+        }
+        catch (Exception ex)
+        {
+            AlertType = "danger";
+            AlertMessage = $"Ocurrió un error: {ex.Message}";
+        }
+        finally
+        {
+            IsCreating = false;
+            ShowSuccessAlert();
+
+            // Opcional: Ocultar alerta después de un tiempo
+            await Task.Delay(3000);
+            ShowAlert = false;
+        }
     }
 
     public void abrirModal()

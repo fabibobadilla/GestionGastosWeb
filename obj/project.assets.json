@@ -193,7 +193,7 @@
           }
         }
       },
-      "GestionGastosShared/1.0.0": {
+      "GestionGastosShared/1.1.0": {
         "type": "package",
         "dependencies": {
           "Blazored.LocalStorage": "4.5.0",
@@ -1140,7 +1140,7 @@
           }
         }
       },
-      "GestionGastosShared/1.0.0": {
+      "GestionGastosShared/1.1.0": {
         "type": "package",
         "dependencies": {
           "Blazored.LocalStorage": "4.5.0",
@@ -2193,14 +2193,14 @@
         "lib/netstandard2.0/Firebase.Auth.xml"
       ]
     },
-    "GestionGastosShared/1.0.0": {
-      "sha512": "i3uV61PkyyLgwmherXzruqjovNbHsweeCQ4UGFd3s1dvkMLFT6THyelqKXjKvgEjPoaOqVUuR6gFxYevfYFd2g==",
+    "GestionGastosShared/1.1.0": {
+      "sha512": "tRNazyDf6QG6g15UG9uReKOUOyS8/1dCRN0YxY12WYmMJ6/YhhwCiAtBD0gr8Z9bwxqen+ubfcDtf3Z1JRhzfg==",
       "type": "package",
-      "path": "gestiongastosshared/1.0.0",
+      "path": "gestiongastosshared/1.1.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "gestiongastosshared.1.0.0.nupkg.sha512",
+        "gestiongastosshared.1.1.0.nupkg.sha512",
         "gestiongastosshared.nuspec",
         "lib/net8.0/GestionGastosShared.dll"
       ]
@@ -3872,7 +3872,7 @@
       "CurrieTechnologies.Razor.SweetAlert2 >= 5.6.0",
       "EPPlus >= 7.5.2",
       "FirebaseAuthentication.net >= 4.1.0",
-      "GestionGastosShared >= 1.0.0",
+      "GestionGastosShared >= 1.1.0",
       "Microsoft.AspNetCore.Components.WebAssembly >= 8.0.6",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 8.0.6",
       "Microsoft.NET.ILLink.Tasks >= 8.0.6",
@@ -3966,7 +3966,7 @@
           },
           "GestionGastosShared": {
             "target": "Package",
-            "version": "[1.0.0, )"
+            "version": "[1.1.0, )"
           },
           "Microsoft.AspNetCore.Components.WebAssembly": {
             "target": "Package",

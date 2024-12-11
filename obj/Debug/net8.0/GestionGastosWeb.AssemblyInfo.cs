@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GestionGastosWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eabe51c23056b02c860d26b8918f32c2ea0b9fbb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+af69548c9943d195ab33c3983f0ea2acfc150c0d")]
 [assembly: System.Reflection.AssemblyProductAttribute("GestionGastosWeb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GestionGastosWeb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
