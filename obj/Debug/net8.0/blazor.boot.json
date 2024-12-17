@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "GestionGastosWeb",
   "resources": {
-    "hash": "sha256-01m5v9HUYIr3KaiZMm7abb2KY9VR/0pFE9Ql8cyGCcU=",
+    "hash": "sha256-X5k1qKL8pt6davc5fr87T5JlSLqbIQlAt2vjhTZHATs=",
     "jsModuleNative": {
       "dotnet.native.8.0.11.9gtgm95kfe.js": "sha256-VdKq87/z5NIxZKmuM+fv38XF+RcEb/bg3jVBwQSfwP4="
     },
@@ -28,6 +28,7 @@
       "EPPlus.Interfaces.wasm": "sha256-KhejWS8Zi18CqkfZdki96BdKky03IBIdpOqnghTNmFQ=",
       "EPPlus.System.Drawing.wasm": "sha256-defZJ05MlF3RIZnBsvW+H0iN4mW5VAJkGdS/tA6BlY8=",
       "Firebase.Auth.wasm": "sha256-cVPmlpx5ocKwnrcRzPoD8CrBlsDqDB0Q85Sl2KpQpxk=",
+      "GestionGastosShared.wasm": "sha256-0uDFFGCFbiEhYm8xY7OWfO8BMdukupMV3IQnpqe9Na4=",
       "Lambda2Js.wasm": "sha256-8KaSQQKzkSLxYo0ViQQKmvLoat2EMnYmC4Q2Ft6zU7M=",
       "Microsoft.AspNetCore.Authorization.wasm": "sha256-W1OqRV83imd3SG/v4PAlCa5m/3RA9n5ysXT7G46jKKc=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-BbzyjRS+gcf0R8v27CSNdTK4vm9XoqKz4NEhk7LK+dY=",
@@ -242,12 +243,10 @@
       "mscorlib.wasm": "sha256-XvLAB5IyfVSmj5aaGnPwgVFaaZz8jXmbN8WmeopiPBM=",
       "netstandard.wasm": "sha256-TbMssdnuTiKq1gjTPkpgROAuWN0uhvPnagvWR+wAgNs=",
       "System.Private.CoreLib.wasm": "sha256-sscg+Efk8ROPq+q4IVmhShzITuoOYvB8Bsc+Mp9vcSM=",
-      "GestionGastosShared.wasm": "sha256-UZ2gkwVhozcfZKp/tjsVEt86rMhCo8TBJEJ83W9RfDw=",
-      "GestionGastosWeb.wasm": "sha256-8VWN3ZLbDhpA7U+PNKBzmIV+st15wIo/zMAgCsm6FuQ="
+      "GestionGastosWeb.wasm": "sha256-r5qo2jAjhdNUfpLPDEe8V6/dta3AGV6K3eAnxkCVjAY="
     },
     "pdb": {
-      "GestionGastosShared.pdb": "sha256-GKNpPU7WRlbfS4WjgGTq8nH1SgNQAd0sR0VP5vci+Io=",
-      "GestionGastosWeb.pdb": "sha256-LI5aYNSG8Ll96KdGNPlBw5hqOVwgZmzie+G5Ey+X51U="
+      "GestionGastosWeb.pdb": "sha256-5O4Q67QZN8Wd2pYcGqaTOfGge10Zq/71xtjDtsuS5Ig="
     }
   },
   "cacheBootResources": true,

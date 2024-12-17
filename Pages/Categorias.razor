@@ -83,14 +83,6 @@ else
         </div>
     }
 
-    @if (showNoneCategorias)
-    {
-        <div class="card">
-            <div class="card-content">
-                <h3>No hay categorias disponibles</h3>
-            </div>
-        </div>
-    }
 
     @if (isConfirmation)
     {
@@ -119,7 +111,7 @@ else
 @code {
     private bool isConfirmation = false;
     private bool isCreating = false;
-    private bool showNoneCategorias = false;
+    // private bool showNoneCategorias = false;
     private bool ShowAlert;
     private string AlertType = "success";
     private string AlertMessage = "";
@@ -154,16 +146,12 @@ else
         {
             isLoading = true;
             categorias = await CategoriasService.ObtenerCategorias();
-
-            if (categorias != null && categorias.Count == 0)
-            {
-                showNoneCategorias = true;
-            }
+            isLoading = false;
         }
         catch (Exception ex)
         {
             categorias = null; // Indica que ocurrió un error
-            ShowErrorAlert(); // Muestra una alerta de error
+            await ShowErrorAlert(); // Muestra una alerta de error
         }
         finally
         {
@@ -199,7 +187,6 @@ else
         categorias = await CategoriasService.ObtenerCategorias();//Refrescar la lista de categorias
         isLoading = false;
 
-        showNoneCategorias = categorias.Count == 0; // Actualiza dinámicamente
     }
 
     private void Cerrar()

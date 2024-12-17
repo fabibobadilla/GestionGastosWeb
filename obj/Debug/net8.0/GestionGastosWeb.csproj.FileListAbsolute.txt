@@ -1204,10 +1204,6 @@ C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\com
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\compressed\rdmanuv02a.gz
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\compressed\x9hfu5ebs8.gz
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\compressed\s2gon6wjo1.gz
-C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\wwwroot\_framework\GestionGastosShared.pdb
-C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\wwwroot\_framework\GestionGastosShared.pdb.gz
-C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\GestionGastosShared.pdb
-C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\obj\Debug\net8.0\compressed\khfjswb7ap.gz
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\wwwroot\_framework\dotnet.native.8.0.11.9gtgm95kfe.js
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\wwwroot\_framework\dotnet.runtime.8.0.11.nu3hzt13kv.js
 C:\Users\fabia\source\repos\Gestion_gastos\GestionGastosWeb\bin\Debug\net8.0\wwwroot\_framework\dotnet.native.8.0.11.9gtgm95kfe.js.gz
