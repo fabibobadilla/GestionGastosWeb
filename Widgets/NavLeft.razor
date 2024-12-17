@@ -1,10 +1,12 @@
 ﻿@inject NavigationManager NavigationManager
+@inject AuthService AuthService
+
 <div class="container">
     <ul>
         <li><a href="/perfil">Mi perfil</a></li>
         <li><a href="/historial">Historial</a></li>
         <li><a href="/ajustes">Ajustes</a></li>
-        <li><a href="/cerrar-sesion">Cerrar Sesión</a></li>
+        <li><a @onclick="Logout">Cerrar Sesión</a></li>
     </ul>
 </div>
 
@@ -32,5 +34,10 @@
     public void Dispose()
     {
         NavigationManager.LocationChanged -= OnLocationChanged;
+    }
+
+    private async Task Logout()
+    {
+        await AuthService.LogoutAsync();
     }
 }

@@ -349,7 +349,7 @@ nuevoGasto.CategoriaId <= 0)
                 // Recargar la lista de gastos
                 gastos = await GastoService.ObtenerGastos();
                 isLoading = false;
-                await ShowSuccessAlert();
+                ShowSuccessAlert();
             }
             catch (Exception ex)
             {
@@ -382,7 +382,7 @@ nuevoGasto.CategoriaId <= 0)
         await GastoService.ActualizarGasto(transaccionToEdit);
         await GastoService.ObtenerGastos();
         isLoading = false;
-        await ShowSuccessAlert();
+        ShowSuccessAlert();
     }
 
     public void EliminarTransaccion(int index)
@@ -402,7 +402,7 @@ nuevoGasto.CategoriaId <= 0)
             gastos.Remove(transaccionAEliminar);  // Remueve el gasto de la lista
         }
         await GastoService.EliminarGasto(IdTransaccion);
-        await ShowSuccessAlert();
+        ShowSuccessAlert();
     }
 
 
