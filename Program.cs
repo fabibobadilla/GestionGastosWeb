@@ -53,7 +53,7 @@ builder.Services.AddScoped<TokenService>(); // Servicio para manejar el token
 
 
 // Configuración para que use el HttpClient predeterminado
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5111") });
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://gastosapi.azurewebsites.net") });
 
 // Se configura el HttpClient predeterminado con el manejador de token
 builder.Services.AddTransient<TokenHttpMessageHandler>(); // Manejador de mensajes para añadir el token al HttpClient

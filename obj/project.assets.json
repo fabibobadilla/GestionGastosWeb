@@ -193,6 +193,20 @@
           }
         }
       },
+      "GestionGastosShared/2.1.1": {
+        "type": "package",
+        "dependencies": {
+          "Blazored.LocalStorage": "4.5.0",
+          "EPPlus": "7.5.2",
+          "System.IdentityModel.Tokens.Jwt": "8.3.0"
+        },
+        "compile": {
+          "lib/net8.0/GestionGastosShared.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/GestionGastosShared.dll": {}
+        }
+      },
       "Lambda2Js/3.1.4": {
         "type": "package",
         "compile": {
@@ -1122,21 +1136,6 @@
         "build": {
           "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
-      },
-      "GestionGastosShared/2.1.1": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "Blazored.LocalStorage": "4.5.0",
-          "EPPlus": "7.5.2",
-          "System.IdentityModel.Tokens.Jwt": "8.3.0"
-        },
-        "compile": {
-          "bin/placeholder/GestionGastosShared.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GestionGastosShared.dll": {}
-        }
       }
     },
     "net8.0/browser-wasm": {
@@ -1329,6 +1328,20 @@
           "lib/netstandard2.0/Firebase.Auth.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "GestionGastosShared/2.1.1": {
+        "type": "package",
+        "dependencies": {
+          "Blazored.LocalStorage": "4.5.0",
+          "EPPlus": "7.5.2",
+          "System.IdentityModel.Tokens.Jwt": "8.3.0"
+        },
+        "compile": {
+          "lib/net8.0/GestionGastosShared.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/GestionGastosShared.dll": {}
         }
       },
       "Lambda2Js/3.1.4": {
@@ -2242,21 +2255,6 @@
         "build": {
           "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
-      },
-      "GestionGastosShared/2.1.1": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "Blazored.LocalStorage": "4.5.0",
-          "EPPlus": "7.5.2",
-          "System.IdentityModel.Tokens.Jwt": "8.3.0"
-        },
-        "compile": {
-          "bin/placeholder/GestionGastosShared.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GestionGastosShared.dll": {}
-        }
       }
     }
   },
@@ -2573,6 +2571,18 @@
         "firebaseauthentication.net.nuspec",
         "lib/netstandard2.0/Firebase.Auth.dll",
         "lib/netstandard2.0/Firebase.Auth.xml"
+      ]
+    },
+    "GestionGastosShared/2.1.1": {
+      "sha512": "NDm24RzqHzehFS2EZZKUAXzGJ8zyjoiPGTbZyUwNlC6dWlJ6JO1ZmvKMwrJRMOCluiLfCNO/cC9dlRT6E0Vhzw==",
+      "type": "package",
+      "path": "gestiongastosshared/2.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "gestiongastosshared.2.1.1.nupkg.sha512",
+        "gestiongastosshared.nuspec",
+        "lib/net8.0/GestionGastosShared.dll"
       ]
     },
     "Lambda2Js/3.1.4": {
@@ -4474,11 +4484,6 @@
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
-    },
-    "GestionGastosShared/2.1.1": {
-      "type": "project",
-      "path": "../Gestion_Gastos.Shared/GestionGastosShared.csproj",
-      "msbuildProject": "../Gestion_Gastos.Shared/GestionGastosShared.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4534,11 +4539,7 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {
-            "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\Gestion_Gastos.Shared\\GestionGastosShared.csproj": {
-              "projectPath": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\Gestion_Gastos.Shared\\GestionGastosShared.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -4587,6 +4588,10 @@
           "FirebaseAuthentication.net": {
             "target": "Package",
             "version": "[4.1.0, )"
+          },
+          "GestionGastosShared": {
+            "target": "Package",
+            "version": "[2.1.1, )"
           },
           "Microsoft.AspNetCore.Components.WebAssembly": {
             "target": "Package",
