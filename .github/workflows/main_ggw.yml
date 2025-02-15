@@ -14,7 +14,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
@@ -22,13 +22,13 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build GestionGastosWeb/GestionGastosWeb.csproj --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+        run: dotnet publish GestionGastosWeb/GestionGastosWeb.csproj -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
@@ -44,12 +44,12 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4
         with:
           name: .net-app
       
       - name: Login to Azure
-        uses: azure/login@v1
+        uses: azure/login@v4
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_2012A3E9C77D494EAD64E950A5C87FDA }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3B56EDDFCC2E4660ADDDDB2CD7C76AD9 }}
@@ -57,7 +57,7 @@ jobs:
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v1
+        uses: azure/webapps-deploy@v4
         with:
           app-name: 'ggw'
           slot-name: 'Production'
