@@ -49,7 +49,7 @@ jobs:
           name: .net-app
       
       - name: Login to Azure
-        uses: azure/login@v4
+        uses: azure/login@v1
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_2012A3E9C77D494EAD64E950A5C87FDA }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3B56EDDFCC2E4660ADDDDB2CD7C76AD9 }}
@@ -57,7 +57,7 @@ jobs:
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v4
+        uses: azure/webapps-deploy@v1
         with:
           app-name: 'ggw'
           slot-name: 'Production'
