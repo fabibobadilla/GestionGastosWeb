@@ -46,3 +46,13 @@
     justify-content: center;
     align-items: center;
 }
+
+.sinGastos[b-pups6hrtd0] {
+    display: flex !important;
+    height: 6rem !important;
+    width: 100% !important;
+    background-color: #fb9f9f !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #930404 !important;
+}

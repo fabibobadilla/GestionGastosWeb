@@ -1,0 +1,53 @@
+﻿@inject DialogService DialogService
+@inject TokenService TokenService
+
+@if (showDialog)
+{
+    <div class="modal fade show d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sesión expirada</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Tu sesión está por expirar. ¿Deseas continuar operando?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" @onclick="ContinueSession">Continuar</button>
+                    <button class="btn btn-danger" @onclick="Logout">Cerrar sesión</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+}
+
+@code {
+    private bool showDialog;
+
+    protected override void OnInitialized()
+    {
+        DialogService.OnShowDialog += ShowDialog;
+    }
+
+    private Task<bool> ShowDialog()
+    {
+        showDialog = true;
+        StateHasChanged();
+        return Task.FromResult(true);
+    }
+
+    private async Task ContinueSession()
+    {
+        showDialog = false;
+        StateHasChanged();
+        await TokenService.RenewTokenAsync();
+    }
+
+    private void Logout()
+    {
+        showDialog = false;
+        StateHasChanged();
+        DialogService.Logout();
+    }
+}

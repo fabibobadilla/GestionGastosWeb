@@ -4,18 +4,18 @@
 
 <PageTitle>Categorías</PageTitle>
 
+<div class="w-100 text-center title-main">
+    <h3>Categorias</h3>
+</div>
+
 @if (isLoading)
 {
     <div class="loading">
         <GestionGastosWeb.Widgets.Loading></GestionGastosWeb.Widgets.Loading>
     </div>
 }
-else
+@if (!isLoading && !noCategorias)
 {
-    <div class="w-100 text-center title-main">
-        <h4>Categorias</h4>
-    </div>
-
     <div class="header-categorias">
         <button @onclick="showModalCreate" class="btn btn-success">Crear categoría</button>
     </div>
@@ -108,7 +108,15 @@ else
     }
 }
 
+@if (noCategorias)
+{
+    <div class="sinCategorias">
+        <h3>Ocurrio un error al intentar visualizar las categorias</h3>
+    </div>
+}
+
 @code {
+    private bool noCategorias = false;
     private bool isConfirmation = false;
     private bool isCreating = false;
     // private bool showNoneCategorias = false;
@@ -144,27 +152,40 @@ else
     {
         try
         {
+            noCategorias = false;
             isLoading = true;
             categorias = await CategoriasService.ObtenerCategorias();
-            isLoading = false;
+            Console.WriteLine(categorias);
+
+            if (categorias != null && categorias.Count > 0) // Usamos && para evitar problemas con null
+            {
+                // Aquí puedes agregar cualquier otra lógica si es necesario
+            }
+            else
+            {
+                noCategorias = true;
+            }
         }
         catch (Exception ex)
         {
-            categorias = null; // Indica que ocurrió un error
-            await ShowErrorAlert(); // Muestra una alerta de error
+            Console.WriteLine($"Error al obtener las categorías: {ex.Message}");
+            categorias = new List<Categoria>(); // Evita valores nulos
+            noCategorias = true;
         }
         finally
         {
-            isLoading = false;
+            isLoading = false; // Esto siempre se ejecuta, evitando que quede cargando
         }
     }
+
+
 
     private Categoria CategoriaAEliminar;
     private bool isEditing = false;
     private Categoria categoriaToEdit = new Categoria();
     private Categoria categoriaNueva = new Categoria()
         {
-            UsuarioId = 4
+            UsuarioId = 1
         };
 
     // Método para manejar la edición de la categoría
@@ -210,19 +231,26 @@ else
     private async Task ConfirmacionEliminar()
     {
         isConfirmation = false;
+
         if (CategoriaAEliminar != null)
         {
-            categorias.Remove(CategoriaAEliminar);  // Remuevev la categoria de la lista
+            var response = await CategoriasService.EliminarCategoria(CategoriaAEliminar.Id);
+            if (response.Contains("exitosamente"))
+            {
+                categorias.Remove(CategoriaAEliminar);
+                await ShowSuccessAlert();
+            }
+            else
+            {
+                await ShowErrorAlert();
+            }
         }
-        await CategoriasService.EliminarCategoria(CategoriaAEliminar.Id);
-        await ShowSuccessAlert();
-
     }
+
 
     private async Task CargarCategoria()
     {
-        isCreating = true;
-        if (categoriaToEdit.Nombre != "")
+        if (!string.IsNullOrWhiteSpace(categoriaNueva.Nombre))
         {
             await CategoriasService.AgregarCategoria(categoriaNueva);
             isLoading = true;
@@ -233,8 +261,8 @@ else
         }
         else
         {
-            isCreating = false;
             await ShowErrorAlert();
         }
     }
+
 }

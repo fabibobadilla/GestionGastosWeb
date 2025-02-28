@@ -15,7 +15,7 @@
         <GestionGastosWeb.Widgets.Loading></GestionGastosWeb.Widgets.Loading>
     </div>
 }
-else
+@if (!isLoading && !noGastos)
 {
     <div class="header-dashboard row">
     </div>
@@ -30,7 +30,7 @@ else
     </div>
 }
 
-@if (IsCreating)
+@* @if (IsCreating)
 {
     <div class="modal show d-block" tabindex="-1">
         <div class="modal-dialog">
@@ -69,7 +69,7 @@ else
         </div>
     </div>
 }
-
+ *@
 @if (ShowAlert)
 {
     <div class="alert alert-@AlertType alert-dismissible fade show" role="alert">
@@ -78,7 +78,16 @@ else
     </div>
 }
 
+@if (noGastos)
+{
+    <div class="sinGastos">
+        <h3>Ocurrió un error al intentar visualizar el saldo.</h3>
+    </div>
+
+}
+
 @code {
+    private bool noGastos = false;
     private bool isLoading = false;
     private bool IsCreating = false;
     private bool ShowAlert;
@@ -96,22 +105,30 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        isLoading = true;
-
         try
         {
+            noGastos = false;
+            isLoading = true;
             gastos = await GastosService.ObtenerGastos();
+            Console.WriteLine(gastos);
 
-            if (gastos != null)
+            if (gastos != null && gastos.Count > 0) // Usamos && en lugar de ||
             {
                 saldo = gastos.Sum(g => g.Tipo == "INGRESO" ? Convert.ToDecimal(g.Monto) : -Convert.ToDecimal(g.Monto));
             }
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error al obtener los gastos: {ex.Message}");
+            gastos = new List<Gasto>(); // Evita que sea null
+            noGastos = true;
+        }
         finally
         {
-            isLoading = false;
+            isLoading = false; // Esto garantiza que siempre deje de cargar
         }
     }
+
 
     private string GetMontoColor()
     {
@@ -122,53 +139,53 @@ else
         return "text-dark"; // Negro (default)
     }
 
-    public void CargarGasto()
-    {
-        IsCreating = true;
-    }
+    // public void CargarGasto()
+    // {
+    //     IsCreating = true;
+    // }
 
-    public async Task GuardarGasto()
-    {
-        try
-        {
-            var response = await GastosService.AgregarGasto(nuevoGasto);
+    // public async Task GuardarGasto()
+    // {
+    //     try
+    //     {
+    //         var response = await GastosService.AgregarGasto(nuevoGasto);
 
-            if (response == "Transacción agregada exitosamente")
-            {
-                AlertType = "success";
-                AlertMessage = "Transacción agregada exitosamente.";
-                nuevoGasto = new Gasto { UsuarioId = 4, FechaCarga = DateTime.Now };
+    //         if (response == "Transacción agregada exitosamente")
+    //         {
+    //             AlertType = "success";
+    //             AlertMessage = "Transacción agregada exitosamente.";
+    //             nuevoGasto = new Gasto { UsuarioId = 4, FechaCarga = DateTime.Now };
 
-                gastos = await GastosService.ObtenerGastos();
-                saldo = gastos.Sum(g => g.Tipo == "INGRESO" ? Convert.ToDecimal(g.Monto) : -Convert.ToDecimal(g.Monto));
-            }
-            else
-            {
-                AlertType = "danger";
-                AlertMessage = $"Error al agregar la transacción: {response}";
-            }
-        }
-        catch (Exception ex)
-        {
-            AlertType = "danger";
-            AlertMessage = $"Ocurrió un error: {ex.Message}";
-        }
-        finally
-        {
-            IsCreating = false;
-            await MostrarAlerta();
-        }
-    }
+    //             gastos = await GastosService.ObtenerGastos();
+    //             saldo = gastos.Sum(g => g.Tipo == "INGRESO" ? Convert.ToDecimal(g.Monto) : -Convert.ToDecimal(g.Monto));
+    //         }
+    //         else
+    //         {
+    //             AlertType = "danger";
+    //             AlertMessage = $"Error al agregar la transacción: {response}";
+    //         }
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         AlertType = "danger";
+    //         AlertMessage = $"Ocurrió un error: {ex.Message}";
+    //     }
+    //     finally
+    //     {
+    //         IsCreating = false;
+    //         await MostrarAlerta();
+    //     }
+    // }
 
-    private async Task MostrarAlerta()
-    {
-        ShowAlert = true;
-        await Task.Delay(2000);
-        ShowAlert = false;
-    }
+    // private async Task MostrarAlerta()
+    // {
+    //     ShowAlert = true;
+    //     await Task.Delay(2000);
+    //     ShowAlert = false;
+    // }
 
-    public void abrirModal()
-    {
-        IsCreating = !IsCreating;
-    }
+    // public void abrirModal()
+    // {
+    //     IsCreating = !IsCreating;
+    // }
 }

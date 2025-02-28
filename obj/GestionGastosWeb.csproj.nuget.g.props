@@ -15,12 +15,11 @@
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)syncfusion.blazor\27.2.2\buildTransitive\Syncfusion.Blazor.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor\27.2.2\buildTransitive\Syncfusion.Blazor.props')" />
-    <Import Project="$(NuGetPackageRoot)mudblazor\7.15.0\buildTransitive\MudBlazor.props" Condition="Exists('$(NuGetPackageRoot)mudblazor\7.15.0\buildTransitive\MudBlazor.props')" />
+    <Import Project="$(NuGetPackageRoot)mudblazor\8.2.0\buildTransitive\MudBlazor.props" Condition="Exists('$(NuGetPackageRoot)mudblazor\8.2.0\buildTransitive\MudBlazor.props')" />
     <Import Project="$(NuGetPackageRoot)mudblazor.thememanager\2.1.0\buildTransitive\MudBlazor.ThemeManager.props" Condition="Exists('$(NuGetPackageRoot)mudblazor.thememanager\2.1.0\buildTransitive\MudBlazor.ThemeManager.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.net.sdk.webassembly.pack\8.0.11\build\Microsoft.NET.Sdk.WebAssembly.Pack.props" Condition="Exists('$(NuGetPackageRoot)microsoft.net.sdk.webassembly.pack\8.0.11\build\Microsoft.NET.Sdk.WebAssembly.Pack.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.net.illink.tasks\8.0.11\build\Microsoft.NET.ILLink.Tasks.props" Condition="Exists('$(NuGetPackageRoot)microsoft.net.illink.tasks\8.0.11\build\Microsoft.NET.ILLink.Tasks.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.aspnetcore.components.webassembly\8.0.6\build\net8.0\Microsoft.AspNetCore.Components.WebAssembly.props" Condition="Exists('$(NuGetPackageRoot)microsoft.aspnetcore.components.webassembly\8.0.6\build\net8.0\Microsoft.AspNetCore.Components.WebAssembly.props')" />
-    <Import Project="$(NuGetPackageRoot)currietechnologies.razor.sweetalert2\5.6.0\buildTransitive\CurrieTechnologies.Razor.SweetAlert2.props" Condition="Exists('$(NuGetPackageRoot)currietechnologies.razor.sweetalert2\5.6.0\buildTransitive\CurrieTechnologies.Razor.SweetAlert2.props')" />
     <Import Project="$(NuGetPackageRoot)blazorise\1.7.1\buildTransitive\Blazorise.props" Condition="Exists('$(NuGetPackageRoot)blazorise\1.7.1\buildTransitive\Blazorise.props')" />
     <Import Project="$(NuGetPackageRoot)blazorise.charts\1.7.1\buildTransitive\Blazorise.Charts.props" Condition="Exists('$(NuGetPackageRoot)blazorise.charts\1.7.1\buildTransitive\Blazorise.Charts.props')" />
     <Import Project="$(NuGetPackageRoot)blazorise.bootstrap\1.7.1\buildTransitive\Blazorise.Bootstrap.props" Condition="Exists('$(NuGetPackageRoot)blazorise.bootstrap\1.7.1\buildTransitive\Blazorise.Bootstrap.props')" />

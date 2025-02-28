@@ -1,5 +1,16 @@
 ﻿@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
 @using GestionGastosWeb.Widgets
+@using Blazored.LocalStorage
+@using Microsoft.JSInterop
+@using GestionGastosShared.Services;
+@inject NavigationManager Navigation
+@inject TokenValidationService TokenValidationService
+@* @inject IAuthService AuthService *@
+
+@* @inject IJSRuntime JS *@
+
+@inject ILocalStorageService LocalStorage
+@inject GestionGastosShared.Services.TokenService TokenService
 
 <Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
@@ -27,10 +38,39 @@
 @code {
     private bool isLoading = true;
 
+
     protected override async Task OnInitializedAsync()
     {
-        // Simula una carga de 3 segundos para que veas el spinner
-        await Task.Delay(10); // Aquí podrías reemplazarlo con lógica real
         isLoading = false;
+
+        var token = await LocalStorage.GetItemAsync<string>("jwt-token");
+        var currentUri = Navigation.Uri;
+
+        if (!string.IsNullOrEmpty(token) && !currentUri.Contains("/dashboard"))
+        {
+            Navigation.NavigateTo("/dashboard");
+        }
+        else if (string.IsNullOrEmpty(token) && !currentUri.Contains("/login"))
+        {
+            Navigation.NavigateTo("/login");
+        }
+
+        TokenValidationService.StartValidation();
+
+        // // Obtener el token desde el almacenamiento local
+        // var token = await LocalStorage.GetItemAsync<string>("jwt-token");
+
+        // // Verificar si el token está próximo a expirar
+        // if (!string.IsNullOrEmpty(token) && TokenService.IsTokenExpiringSoon(token))
+        // {
+        //     token = await TokenService.RenewTokenAsync();
+        //     await LocalStorage.SetItemAsync("jwt-token", token);
+        // }
+
+        // // Redirigir a la página de inicio si no hay token
+        // if (string.IsNullOrEmpty(token))
+        // {
+        //     Navigation.NavigateTo("/login", forceLoad: true);
+        // }
     }
 }

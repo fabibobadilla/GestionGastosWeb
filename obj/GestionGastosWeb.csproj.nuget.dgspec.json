@@ -70,10 +70,6 @@
               "target": "Package",
               "version": "[1.7.1, )"
             },
-            "CurrieTechnologies.Razor.SweetAlert2": {
-              "target": "Package",
-              "version": "[5.6.0, )"
-            },
             "EPPlus": {
               "target": "Package",
               "version": "[7.5.2, )"
@@ -84,7 +80,7 @@
             },
             "GestionGastosShared": {
               "target": "Package",
-              "version": "[2.1.1, )"
+              "version": "[2.9.0, )"
             },
             "Microsoft.AspNetCore.Components.WebAssembly": {
               "target": "Package",
@@ -113,7 +109,7 @@
             },
             "MudBlazor": {
               "target": "Package",
-              "version": "[7.15.0, )"
+              "version": "[8.2.0, )"
             },
             "MudBlazor.ThemeManager": {
               "target": "Package",

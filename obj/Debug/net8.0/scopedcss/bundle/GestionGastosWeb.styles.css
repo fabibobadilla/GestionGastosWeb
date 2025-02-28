@@ -320,6 +320,16 @@ html[b-qjep78vr78], body[b-qjep78vr78] {
     bottom: 10px;
     left: 40%;
 }
+
+.sinCategorias[b-bid4tchvs0] {
+    display: flex !important;
+    height: 6rem !important;
+    width: 100% !important;
+    background-color: #fb9f9f !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #930404 !important;
+}
 /* /Pages/Dashboard.razor.rz.scp.css */
 .dashboard[b-pups6hrtd0] {
     display: flex;
@@ -368,6 +378,16 @@ html[b-qjep78vr78], body[b-qjep78vr78] {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.sinGastos[b-pups6hrtd0] {
+    display: flex !important;
+    height: 6rem !important;
+    width: 100% !important;
+    background-color: #fb9f9f !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #930404 !important;
 }
 /* /Pages/Footer.razor.rz.scp.css */
 .footer[b-cwqt5vd184] {

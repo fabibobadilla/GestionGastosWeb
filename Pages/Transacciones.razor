@@ -261,6 +261,7 @@ nuevoGasto.CategoriaId <= 0)
 
 
 @code {
+    private bool noTransacciones = false;
     private bool isConfirmation = false;
     private int IdTransaccion;
     private bool ShowAlert;
@@ -276,11 +277,46 @@ nuevoGasto.CategoriaId <= 0)
 
     protected override async Task OnInitializedAsync()
     {
-        // Cargar las categorías desde el servicio.
-        isLoading = true;
-        categorias = await CategoriaService.ObtenerCategorias();
-        gastos = await GastoService.ObtenerGastos();
-        isLoading = false;
+        try
+        {
+            isLoading = true;
+            noTransacciones = false;
+
+
+            // Obtener categorías
+            categorias = await CategoriaService.ObtenerCategorias();
+            if (categorias == null || categorias.Count == 0)
+            {
+                categorias = new List<Categoria>(); // Evita valores nulos
+                                                    // await ShowErrorAlert("No se encontraron categorías.");
+                noTransacciones = true;
+            }
+
+            // Obtener gastos
+            gastos = await GastoService.ObtenerGastos();
+            if (gastos != null && gastos.Count > 0)
+            {
+                // saldo = gastos.Sum(g => g.Tipo == "INGRESO" ? Convert.ToDecimal(g.Monto) : -Convert.ToDecimal(g.Monto));
+            }
+            else
+            {
+                gastos = new List<Gasto>(); // Evita valores nulos
+                                            // await ShowErrorAlert("No se encontraron gastos.");
+                noTransacciones = true;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error al obtener datos: {ex.Message}");
+            categorias = new List<Categoria>();
+            gastos = new List<Gasto>();
+            // await ShowErrorAlert("Error al cargar datos.");
+        }
+        finally
+        {
+            isLoading = false; // Asegura que el estado de carga se desactive siempre
+        }
+
     }
     private async Task ShowSuccessAlert()
     {
