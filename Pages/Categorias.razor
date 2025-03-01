@@ -1,5 +1,8 @@
 ﻿@page "/categorias"
 @inject CategoriasService CategoriasService
+@inject Blazored.LocalStorage.ILocalStorageService LocalStorage
+
+@inject NavigationManager Navigation
 
 
 <PageTitle>Categorías</PageTitle>
@@ -108,10 +111,16 @@
     }
 }
 
-@if (noCategorias)
+@if (noCategorias && !sinCategoriasCargadas)
 {
     <div class="sinCategorias">
         <h3>Ocurrio un error al intentar visualizar las categorias</h3>
+    </div>
+}
+@if (!noCategorias && sinCategoriasCargadas)
+{
+    <div class="sinCategorias">
+        <h3>No hay categorias cargadas</h3>
     </div>
 }
 
@@ -125,6 +134,8 @@
     private string AlertMessage = "";
     private List<Categoria>? categorias;
     private bool isLoading = true;
+    private int idUsuarioLogueado;
+    private bool sinCategoriasCargadas = false;
 
     private async Task ShowSuccessAlert()
     {
@@ -154,39 +165,50 @@
         {
             noCategorias = false;
             isLoading = true;
-            categorias = await CategoriasService.ObtenerCategorias();
-            Console.WriteLine(categorias);
 
-            if (categorias != null && categorias.Count > 0) // Usamos && para evitar problemas con null
+            // Obtener el ID del usuario una sola vez
+            idUsuarioLogueado = await LocalStorage.GetItemAsync<int>("UsuarioId");
+
+            categoriaNueva = new Categoria()
+                {
+                    UsuarioId = idUsuarioLogueado
+                };
+
+            // Intentar obtener las categorías del usuario
+            categorias = await CategoriasService.ObtenerCategorias(idUsuarioLogueado);
+
+            // Si la API responde correctamente pero no hay categorías, no mostramos el mensaje de error
+            if (categorias == null || categorias.Count == 0)
             {
-                // Aquí puedes agregar cualquier otra lógica si es necesario
+                categorias = new List<Categoria>(); // Evita valores nulos
             }
-            else
-            {
-                noCategorias = true;
-            }
+        }
+        catch (HttpRequestException httpEx) when (httpEx.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+        {
+            // Token expirado o usuario no autorizado
+            Console.WriteLine("El token ha expirado. Mostrando mensaje de error y redirigiendo...");
+            noCategorias = true; // Solo mostramos el mensaje si el error es 401
+            Navigation.NavigateTo("/login", forceLoad: true);
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error al obtener las categorías: {ex.Message}");
+            // Otros errores inesperados
+            Console.WriteLine($"Error inesperado al obtener las categorías: {ex.Message}");
             categorias = new List<Categoria>(); // Evita valores nulos
-            noCategorias = true;
         }
         finally
         {
-            isLoading = false; // Esto siempre se ejecuta, evitando que quede cargando
+            isLoading = false; // Siempre aseguramos que el indicador de carga se apague
         }
     }
+
 
 
 
     private Categoria CategoriaAEliminar;
     private bool isEditing = false;
     private Categoria categoriaToEdit = new Categoria();
-    private Categoria categoriaNueva = new Categoria()
-        {
-            UsuarioId = 1
-        };
+    private Categoria categoriaNueva;
 
     // Método para manejar la edición de la categoría
     private void EditarCategoria(int index)
@@ -205,7 +227,7 @@
         isEditing = false;
         ShowSuccessAlert();
         isLoading = true;
-        categorias = await CategoriasService.ObtenerCategorias();//Refrescar la lista de categorias
+        categorias = await CategoriasService.ObtenerCategorias(idUsuarioLogueado);//Refrescar la lista de categorias
         isLoading = false;
 
     }
@@ -255,7 +277,7 @@
             await CategoriasService.AgregarCategoria(categoriaNueva);
             isLoading = true;
             isCreating = false;
-            categorias = await CategoriasService.ObtenerCategorias();
+            categorias = await CategoriasService.ObtenerCategorias(idUsuarioLogueado);
             isLoading = false;
             await ShowSuccessAlert();
         }

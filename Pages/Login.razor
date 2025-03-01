@@ -5,6 +5,7 @@
 
 @inject AuthService AuthService
 @inject NavigationManager Navigation
+@inject UsuariosService UsuariosService
 
 <PageTitle>Iniciar Sesión</PageTitle>
 <div class="main-container">
@@ -165,8 +166,11 @@
         {
             var loginModel = new LoginModel { Email = Email, Password = Password };
             var token = await AuthService.Login(loginModel);
-            ShowSuccessAlert();
-            await LocalStorage.SetItemAsync("authToken", token);
+            var usuarios = await UsuariosService.ObtenerUsuarios();
+            var idUsuarioLogueado = usuarios.FirstOrDefault(u => u.Email == loginModel.Email)?.Id;
+            await LocalStorage.SetItemAsync("UsuarioId", idUsuarioLogueado);
+            await ShowSuccessAlert();
+            // await LocalStorage.SetItemAsync("authToken", token);
             Navigation.NavigateTo("/dashboard"); // Redirigir al home o página deseada
         }
         catch (HttpRequestException ex)
@@ -187,10 +191,10 @@
                     Email = RegisterEmail,
                     Password = RegisterPassword
                 };
-            Console.WriteLine(registerModel);
             var token = await AuthService.Register(registerModel);
-            await LocalStorage.SetItemAsync("authToken", token);
-            Navigation.NavigateTo("/dashboard"); // Redirigir al home o página deseada
+            // await LocalStorage.SetItemAsync("jwt-token", token);
+            await ShowSuccessAlert();
+            Navigation.NavigateTo("/login"); // Redirigir al home o página deseada
         }
         catch (HttpRequestException ex)
         {

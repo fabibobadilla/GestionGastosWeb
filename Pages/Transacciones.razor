@@ -2,6 +2,7 @@
 
 @inject CategoriasService CategoriaService
 @inject GastosService GastoService
+@inject Blazored.LocalStorage.ILocalStorageService LocalStorage
 @using GestionGastosShared.Models
 
 
@@ -274,6 +275,7 @@ nuevoGasto.CategoriaId <= 0)
     private List<Gasto> gastos = new List<Gasto>();
     private Gasto nuevoGasto = new Gasto();
     private Gasto transaccionToEdit = new Gasto();
+    private int idUsuarioLogueado;
 
     protected override async Task OnInitializedAsync()
     {
@@ -281,10 +283,11 @@ nuevoGasto.CategoriaId <= 0)
         {
             isLoading = true;
             noTransacciones = false;
+            idUsuarioLogueado = await LocalStorage.GetItemAsync<int>("UsuarioId");
 
 
             // Obtener categorías
-            categorias = await CategoriaService.ObtenerCategorias();
+            categorias = await CategoriaService.ObtenerCategorias(idUsuarioLogueado);
             if (categorias == null || categorias.Count == 0)
             {
                 categorias = new List<Categoria>(); // Evita valores nulos
@@ -293,7 +296,7 @@ nuevoGasto.CategoriaId <= 0)
             }
 
             // Obtener gastos
-            gastos = await GastoService.ObtenerGastos();
+            gastos = await GastoService.ObtenerGastos(idUsuarioLogueado);
             if (gastos != null && gastos.Count > 0)
             {
                 // saldo = gastos.Sum(g => g.Tipo == "INGRESO" ? Convert.ToDecimal(g.Monto) : -Convert.ToDecimal(g.Monto));
@@ -349,7 +352,7 @@ nuevoGasto.CategoriaId <= 0)
             nuevoGasto = new Gasto
                 {
                     FechaCarga = DateTime.Now,
-                    UsuarioId = 4 // Ajusta esto con el ID dinámico del usuario logueado
+                    UsuarioId = idUsuarioLogueado // Ajusta esto con el ID dinámico del usuario logueado
                 };
         }
     }
@@ -378,12 +381,12 @@ nuevoGasto.CategoriaId <= 0)
                 nuevoGasto = new Gasto
                     {
                         FechaCarga = DateTime.Now,
-                        UsuarioId = 4 // Puedes ajustar esto dinámicamente
+                        UsuarioId = idUsuarioLogueado // Puedes ajustar esto dinámicamente
                     };
                 // <GestionGastosWeb.Widgets.Snackbar AlertMessage="Ocurrió un error en la operación." AlertType="danger" />
 
                 // Recargar la lista de gastos
-                gastos = await GastoService.ObtenerGastos();
+                gastos = await GastoService.ObtenerGastos(idUsuarioLogueado);
                 isLoading = false;
                 ShowSuccessAlert();
             }
@@ -416,7 +419,7 @@ nuevoGasto.CategoriaId <= 0)
         isLoading = true;
         isEditing = false;
         await GastoService.ActualizarGasto(transaccionToEdit);
-        await GastoService.ObtenerGastos();
+        await GastoService.ObtenerGastos(idUsuarioLogueado);
         isLoading = false;
         ShowSuccessAlert();
     }

@@ -38,11 +38,14 @@
 @code {
     private bool isLoading = true;
 
-
     protected override async Task OnInitializedAsync()
     {
         isLoading = false;
 
+        // Eliminar el token si existe
+        await LocalStorage.RemoveItemAsync("jwt-token");
+
+        // Intentar recuperar el token (debería ser null o vacío si se eliminó correctamente)
         var token = await LocalStorage.GetItemAsync<string>("jwt-token");
         var currentUri = Navigation.Uri;
 
@@ -55,22 +58,43 @@
             Navigation.NavigateTo("/login");
         }
 
-        TokenValidationService.StartValidation();
-
-        // // Obtener el token desde el almacenamiento local
-        // var token = await LocalStorage.GetItemAsync<string>("jwt-token");
-
-        // // Verificar si el token está próximo a expirar
-        // if (!string.IsNullOrEmpty(token) && TokenService.IsTokenExpiringSoon(token))
-        // {
-        //     token = await TokenService.RenewTokenAsync();
-        //     await LocalStorage.SetItemAsync("jwt-token", token);
-        // }
-
-        // // Redirigir a la página de inicio si no hay token
-        // if (string.IsNullOrEmpty(token))
-        // {
-        //     Navigation.NavigateTo("/login", forceLoad: true);
-        // }
     }
+
+
+
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     isLoading = false;
+    //     await LocalStorage.RemoveItemsAsync("jwt-token");
+
+    //     var token = await LocalStorage.GetItemAsync<string>("jwt-token");
+    //     var currentUri = Navigation.Uri;
+
+    //     if (!string.IsNullOrEmpty(token) && !currentUri.Contains("/dashboard"))
+    //     {
+    //         Navigation.NavigateTo("/dashboard");
+    //     }
+    //     else if (string.IsNullOrEmpty(token) && !currentUri.Contains("/login"))
+    //     {
+    //         Navigation.NavigateTo("/login");
+    //     }
+
+    //     TokenValidationService.StartValidation();
+
+    //     // // Obtener el token desde el almacenamiento local
+    //     // var token = await LocalStorage.GetItemAsync<string>("jwt-token");
+
+    //     // // Verificar si el token está próximo a expirar
+    //     // if (!string.IsNullOrEmpty(token) && TokenService.IsTokenExpiringSoon(token))
+    //     // {
+    //     //     token = await TokenService.RenewTokenAsync();
+    //     //     await LocalStorage.SetItemAsync("jwt-token", token);
+    //     // }
+
+    //     // // Redirigir a la página de inicio si no hay token
+    //     // if (string.IsNullOrEmpty(token))
+    //     // {
+    //     //     Navigation.NavigateTo("/login", forceLoad: true);
+    //     // }
+    // }
 }

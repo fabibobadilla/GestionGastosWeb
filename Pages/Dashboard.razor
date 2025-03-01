@@ -4,6 +4,8 @@
 @using GestionGastosWeb.Pages
 @inject CategoriasService CategoriasService
 @inject GastosService GastosService
+@inject Blazored.LocalStorage.ILocalStorageService LocalStorage
+@inject NavigationManager Navigation
 
 <div class="text-center" style="padding: 15px;">
     <h3>Resumen de saldo</h3>
@@ -94,6 +96,7 @@
     private string AlertType = "success";
     private string AlertMessage = "";
     private decimal saldo = 0;
+    private int idUsuarioLogueado;
 
     private Gasto nuevoGasto = new Gasto
         {
@@ -109,25 +112,43 @@
         {
             noGastos = false;
             isLoading = true;
-            gastos = await GastosService.ObtenerGastos();
+
+            // Obtener el ID del usuario logueado
+            idUsuarioLogueado = await LocalStorage.GetItemAsync<int>("UsuarioId");
+
+            // Intentar obtener los gastos del usuario
+            gastos = await GastosService.ObtenerGastos(idUsuarioLogueado);
             Console.WriteLine(gastos);
 
-            if (gastos != null && gastos.Count > 0) // Usamos && en lugar de ||
+            // Si la API responde correctamente pero no hay gastos, simplemente dejamos la lista vacía
+            if (gastos == null || gastos.Count == 0)
+            {
+                gastos = new List<Gasto>(); // Evita valores nulos
+            }
+            else
             {
                 saldo = gastos.Sum(g => g.Tipo == "INGRESO" ? Convert.ToDecimal(g.Monto) : -Convert.ToDecimal(g.Monto));
             }
         }
+        catch (HttpRequestException httpEx) when (httpEx.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+        {
+            // Token expirado o usuario no autorizado
+            Console.WriteLine("El token ha expirado. Mostrando mensaje de error y redirigiendo...");
+            noGastos = true; // Solo mostramos el mensaje si el error es 401
+            Navigation.NavigateTo("/login", forceLoad: true);
+        }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error al obtener los gastos: {ex.Message}");
-            gastos = new List<Gasto>(); // Evita que sea null
-            noGastos = true;
+            // Otros errores inesperados
+            Console.WriteLine($"Error inesperado al obtener los gastos: {ex.Message}");
+            gastos = new List<Gasto>(); // Evita valores nulos
         }
         finally
         {
-            isLoading = false; // Esto garantiza que siempre deje de cargar
+            isLoading = false; // Aseguramos que el indicador de carga se apague siempre
         }
     }
+
 
 
     private string GetMontoColor()
