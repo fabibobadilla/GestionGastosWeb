@@ -32,9 +32,9 @@
 		<ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
 	</ItemGroup>
 
-	<ItemGroup>
+	<!--<ItemGroup>
 		<Content Include="wwwroot\manifest.webmanifest" />
-	</ItemGroup>
+	</ItemGroup>-->
 
 	<ItemGroup>
 		<Folder Include="Models\" />
