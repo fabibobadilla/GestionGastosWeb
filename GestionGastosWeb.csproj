@@ -28,13 +28,13 @@
 		<PackageReference Include="Syncfusion.Blazor" Version="27.2.2" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
-	</ItemGroup>
-
 	<!--<ItemGroup>
-		<Content Include="wwwroot\manifest.webmanifest" />
+		<ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
 	</ItemGroup>-->
+
+	<ItemGroup>
+		<Content Include="wwwroot\manifest.webmanifest" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<Folder Include="Models\" />
