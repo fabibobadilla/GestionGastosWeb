@@ -4,7 +4,7 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+		<!--<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>-->
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -28,9 +28,9 @@
 		<PackageReference Include="Syncfusion.Blazor" Version="27.2.2" />
 	</ItemGroup>
 
-	<ItemGroup>
+	<!--<ItemGroup>
 		<Content Include="wwwroot\manifest.webmanifest" />
-	</ItemGroup>
+	</ItemGroup>-->
 
 	<ItemGroup>
 		<Folder Include="Models\" />

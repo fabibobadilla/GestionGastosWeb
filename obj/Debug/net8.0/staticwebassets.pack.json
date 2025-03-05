@@ -13,14 +13,6 @@
       "PackagePath": "staticwebassets\\GestionGastosWeb.styles.css"
     },
     {
-      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\obj\\Debug\\net8.0\\service-worker-assets.js",
-      "PackagePath": "staticwebassets\\service-worker-assets.js"
-    },
-    {
-      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\obj\\Debug\\net8.0\\service-worker\\service-worker.published.js",
-      "PackagePath": "staticwebassets\\service-worker.js"
-    },
-    {
       "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\appsettings.json",
       "PackagePath": "staticwebassets\\appsettings.json"
     },
@@ -75,6 +67,14 @@
     {
       "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\manifest.webmanifest",
       "PackagePath": "staticwebassets\\manifest.webmanifest"
+    },
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\service-worker.js",
+      "PackagePath": "staticwebassets\\service-worker.js"
+    },
+    {
+      "Id": "C:\\Users\\fabia\\source\\repos\\Gestion_gastos\\GestionGastosWeb\\wwwroot\\service-worker.published.js",
+      "PackagePath": "staticwebassets\\service-worker.published.js"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.GestionGastosWeb.Microsoft.AspNetCore.StaticWebAssets.props",
